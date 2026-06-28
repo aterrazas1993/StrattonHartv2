@@ -30,6 +30,10 @@
 
       --font-display: 'Syne', sans-serif;
       --font-body:    'Inter', sans-serif;
+      --services-card-height: 34rem;
+      --services-card-gap: 18px;
+      --services-card-top-offset: 1.1rem;
+      --services-card-count: 6;
     }
 
     /* ── Light theme overrides ── */
@@ -442,6 +446,11 @@
     /* Tall scroll-pin container */
     .services-stack-outer {
       position: relative;
+      padding-bottom: calc(var(--services-card-count) * var(--services-card-top-offset));
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(var(--services-card-count), var(--services-card-height));
+      gap: var(--services-card-gap);
     }
 
     .services-sticky-header {
@@ -461,16 +470,17 @@
     /* Each card pins and gets layered */
     .service-card-wrap {
       position: sticky;
-      top: 160px;
+      top: 132px;
       z-index: 1;
+      padding-top: calc(var(--index) * var(--services-card-top-offset));
     }
 
-    .service-card-wrap:nth-child(1) { top: 160px; z-index: 6; }
-    .service-card-wrap:nth-child(2) { top: 168px; z-index: 7; }
-    .service-card-wrap:nth-child(3) { top: 176px; z-index: 8; }
-    .service-card-wrap:nth-child(4) { top: 184px; z-index: 9; }
-    .service-card-wrap:nth-child(5) { top: 192px; z-index: 10; }
-    .service-card-wrap:nth-child(6) { top: 200px; z-index: 11; }
+    .service-card-wrap:nth-child(1) { z-index: 6; }
+    .service-card-wrap:nth-child(2) { z-index: 7; }
+    .service-card-wrap:nth-child(3) { z-index: 8; }
+    .service-card-wrap:nth-child(4) { z-index: 9; }
+    .service-card-wrap:nth-child(5) { z-index: 10; }
+    .service-card-wrap:nth-child(6) { z-index: 11; }
 
     .service-card {
       display: flex;
@@ -487,6 +497,8 @@
       margin-bottom: 16px;
       will-change: transform;
       overflow: hidden;
+      transform-origin: 50% 0%;
+      transition: transform 0.22s ease, opacity 0.22s ease, border-color 0.25s, box-shadow 0.25s, background 0.35s;
     }
 
     .service-card:hover {
@@ -618,6 +630,37 @@
     /* Scale-down as cards collapse — driven by JS */
     .service-card-wrap.collapsed .service-card {
       box-shadow: 0 -2px 0 0 var(--border);
+    }
+
+    @supports (animation-timeline: auto) {
+      @scroll-timeline services-scroll {
+        source: selector(body);
+        scroll-offsets:
+          selector(#cards) start 1,
+          selector(#cards) start 0;
+        start: selector(#cards) start 1;
+        end: selector(#cards) start 0;
+        time-range: 6s;
+      }
+
+      .service-card-wrap {
+        --index0: calc(var(--index) - 1);
+        --reverse-index: calc(var(--services-card-count) - var(--index0));
+        --reverse-index0: calc(var(--reverse-index) - 1);
+      }
+
+      .service-card {
+        --duration: calc(var(--reverse-index0) * 1s);
+        --delay: calc(var(--index0) * 1s);
+        animation: var(--duration) linear services-scale var(--delay) forwards;
+        animation-timeline: services-scroll;
+      }
+
+      @keyframes services-scale {
+        to {
+          transform: scale(calc(1.04 - (0.04 * var(--reverse-index))));
+        }
+      }
     }
 
     /* ════════════════════════════
@@ -1264,6 +1307,9 @@
       }
       .services-stack-outer {
         position: static;
+        padding-bottom: 0;
+        display: block;
+        gap: 0;
       }
       .service-card-wrap,
       .service-card-wrap:nth-child(1),
@@ -1275,12 +1321,15 @@
         position: static;
         top: auto;
         z-index: auto;
+        padding-top: 0;
       }
       .service-card {
         gap: 18px;
         flex-wrap: wrap;
         padding: 24px 20px;
         margin-bottom: 14px;
+        transform: none !important;
+        opacity: 1 !important;
       }
       .service-card-left {
         width: 100%;
@@ -1543,9 +1592,9 @@
       </div>
     </div>
 
-    <div class="section services-stack-outer" style="padding-top: 24px;">
+    <div class="section services-stack-outer" id="cards" style="padding-top: 24px;">
 
-      <div class="service-card-wrap">
+      <div class="service-card-wrap" id="card_1" style="--index:1;">
         <a href="#" class="service-card">
           <div class="service-card-left">
             <span class="service-num">01 / 06</span>
@@ -1569,7 +1618,7 @@
         </a>
       </div>
 
-      <div class="service-card-wrap">
+      <div class="service-card-wrap" id="card_2" style="--index:2;">
         <a href="#" class="service-card">
           <div class="service-card-left">
             <span class="service-num">02 / 06</span>
@@ -1593,7 +1642,7 @@
         </a>
       </div>
 
-      <div class="service-card-wrap">
+      <div class="service-card-wrap" id="card_3" style="--index:3;">
         <a href="#" class="service-card">
           <div class="service-card-left">
             <span class="service-num">03 / 06</span>
@@ -1617,7 +1666,7 @@
         </a>
       </div>
 
-      <div class="service-card-wrap">
+      <div class="service-card-wrap" id="card_4" style="--index:4;">
         <a href="#" class="service-card">
           <div class="service-card-left">
             <span class="service-num">04 / 06</span>
@@ -1641,7 +1690,7 @@
         </a>
       </div>
 
-      <div class="service-card-wrap">
+      <div class="service-card-wrap" id="card_5" style="--index:5;">
         <a href="#" class="service-card">
           <div class="service-card-left">
             <span class="service-num">05 / 06</span>
@@ -1665,7 +1714,7 @@
         </a>
       </div>
 
-      <div class="service-card-wrap">
+      <div class="service-card-wrap" id="card_6" style="--index:6;">
         <a href="#" class="service-card">
           <div class="service-card-left">
             <span class="service-num">06 / 06</span>
@@ -2344,13 +2393,30 @@
       const wraps = document.querySelectorAll('.service-card-wrap');
       if (!wraps.length) return;
 
+      const supportsScrollTimeline = window.CSS && CSS.supports && CSS.supports('animation-timeline: auto');
+
       const CARD_HEIGHT = 160; // approximate collapsed height in px
 
       function onScroll() {
         if (window.innerWidth <= 900) {
           wraps.forEach((wrap) => {
             const card = wrap.querySelector('.service-card');
-            card.style.transform = 'scale(1)';
+            const rect = wrap.getBoundingClientRect();
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const revealProgress = Math.min(Math.max((viewportHeight - rect.top) / (viewportHeight * 0.9), 0), 1);
+            const scale = 0.95 + (revealProgress * 0.05);
+            const translateY = (1 - revealProgress) * 26;
+            const opacity = 0.62 + (revealProgress * 0.38);
+
+            card.style.transform = `translateY(${translateY}px) scale(${scale})`;
+            card.style.opacity = String(Math.min(Math.max(opacity, 0.62), 1));
+          });
+          return;
+        }
+
+        if (supportsScrollTimeline) {
+          wraps.forEach((wrap) => {
+            const card = wrap.querySelector('.service-card');
             card.style.opacity = '1';
           });
           return;
@@ -2381,6 +2447,7 @@
       }
 
       window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
       onScroll();
     })();
 
