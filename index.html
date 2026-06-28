@@ -279,6 +279,61 @@
       position: relative;
     }
 
+    .hero-stickies {
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.12s forwards;
+    }
+
+    .hero-sticky {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 14px 20px 12px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #fff3c9 0%, #f5dfa0 100%);
+      color: #2a2418;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      text-transform: uppercase;
+      box-shadow: 0 16px 30px rgba(0,0,0,0.16);
+    }
+
+    .hero-sticky::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      width: 54px;
+      height: 18px;
+      transform: translateX(-50%) rotate(-3deg);
+      border-radius: 3px;
+      background: rgba(255,255,255,0.42);
+      border: 1px solid rgba(255,255,255,0.28);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      backdrop-filter: blur(2px);
+    }
+
+    .hero-sticky-primary {
+      background: linear-gradient(180deg, #ffe0d8 0%, #f7b9ac 100%);
+      color: #4a1712;
+      transform: rotate(-3deg);
+    }
+
+    .hero-sticky-secondary {
+      background: linear-gradient(180deg, #fff3c9 0%, #f5dfa0 100%);
+      color: #2a2418;
+      transform: rotate(2.2deg);
+    }
+
     .hero-eyebrow {
       display: flex;
       align-items: center;
@@ -1303,6 +1358,20 @@
       nav { padding: 14px 24px; }
       .nav-links { display: none; }
       .hero, .section { padding-left: 24px; padding-right: 24px; }
+      .hero-stickies {
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .hero-sticky {
+        min-height: 52px;
+        padding: 12px 16px 11px;
+        font-size: 15px;
+      }
+      .hero-sticky::before {
+        width: 44px;
+        height: 15px;
+        top: -8px;
+      }
       .about-strip-inner { flex-direction: column; gap: 10px; padding: 36px 24px; }
       .services-sticky-header {
         position: static;
@@ -1422,6 +1491,11 @@
   <!-- ══ HERO ══ -->
   <div class="hero-wrap">
     <section class="hero">
+      <div class="hero-stickies">
+        <span class="hero-sticky hero-sticky-primary">Limited Time Special</span>
+        <span class="hero-sticky hero-sticky-secondary">$100 Website With Hosting*</span>
+      </div>
+
       <div class="hero-eyebrow">
         <span class="hero-pill hero-pill-accent">SEO &amp; Google Rankings</span>
         <span class="hero-pill hero-pill-outline">Graphic Design</span>
