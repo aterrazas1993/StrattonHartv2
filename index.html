@@ -486,6 +486,7 @@
       transition: border-color 0.25s, box-shadow 0.25s, background 0.35s;
       margin-bottom: 16px;
       will-change: transform;
+      overflow: hidden;
     }
 
     .service-card:hover {
@@ -547,7 +548,7 @@
     .service-icon svg { width: 24px; height: 24px; color: var(--primary); }
 
     /* Middle: content */
-    .service-content { flex: 1; min-width: 0; }
+    .service-content { flex: 1; min-width: 0; max-width: 100%; }
 
     .service-media {
       width: 230px;
@@ -571,6 +572,9 @@
       color: var(--white);
       margin-bottom: 8px;
       letter-spacing: -0.5px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .service-desc {
@@ -578,6 +582,7 @@
       color: var(--muted);
       line-height: 1.7;
       max-width: 560px;
+      overflow-wrap: anywhere;
     }
 
     .service-tags {
@@ -1290,10 +1295,12 @@
       }
       .service-content {
         width: 100%;
+        max-width: 100%;
       }
       .service-title {
-        font-size: 20px;
-        line-height: 1.08;
+        font-size: 18px;
+        line-height: 1.12;
+        max-width: 100%;
       }
       .service-desc {
         font-size: 14px;
@@ -1311,6 +1318,10 @@
       }
       .service-media img {
         border-radius: 16px;
+      }
+      .service-num,
+      .service-tag {
+        max-width: 100%;
       }
       .service-arrow { display: none; }
       .reviews-grid, .portfolio-grid, .pricing-grid { grid-template-columns: 1fr; }
