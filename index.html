@@ -1579,7 +1579,8 @@
     .word-crossed {
       position: relative;
       display: inline-block;
-      color: var(--muted);
+      color: var(--text);
+      isolation: isolate;
     }
 
     /* Two layered crayon lines through the word */
@@ -1594,25 +1595,31 @@
 
     /* Main thick crayon stroke */
     .word-crossed::before {
+      --crayon-rotate: -1.5deg;
       top: 46%;
       height: 4px;
-      background: #C42940;
+      background: #fbbc05;
       border-radius: 2px;
       opacity: 0.92;
-      transform: rotate(-1.5deg);
+      transform: rotate(var(--crayon-rotate)) scaleX(0);
+      transform-origin: left center;
       /* Crayon texture via SVG filter applied via filter property */
       filter: url(#crayon-filter);
+      animation: crayonStrike 0.5s ease forwards;
     }
 
     /* Second thinner wobble stroke */
     .word-crossed::after {
+      --crayon-rotate: 0.8deg;
       top: 54%;
       height: 2.5px;
-      background: #E03A50;
+      background: #4285f4;
       border-radius: 2px;
       opacity: 0.5;
-      transform: rotate(0.8deg) scaleX(0.95);
+      transform: rotate(var(--crayon-rotate)) scaleX(0);
+      transform-origin: left center;
       filter: url(#crayon-filter);
+      animation: crayonStrike 0.5s ease 0.12s forwards;
     }
 
     /* ════════════════════════
@@ -1624,28 +1631,57 @@
       color: var(--white);
       font-weight: 600;
       padding: 0 3px;
+      isolation: isolate;
     }
 
     .word-circled::before {
+      --circle-rotate: -6deg;
+      --circle-scale-x: 1.15;
+      --circle-scale-y: 1;
+      --circle-opacity: 0.9;
       content: '';
       position: absolute;
       inset: -6px -10px;
       border-radius: 50%;
-      border: 4px solid #C42940;
+      border: 4px solid #34a853;
       opacity: 0.9;
-      transform: rotate(-6deg) scaleX(1.15);
+      transform: rotate(var(--circle-rotate)) scaleX(0.2) scaleY(0.75);
+      transform-origin: center center;
       filter: url(#crayon-filter);
+      animation: crayonCircle 0.55s ease forwards;
     }
 
     .word-circled::after {
+      --circle-rotate: 5deg;
+      --circle-scale-x: 1.1;
+      --circle-scale-y: 1;
+      --circle-opacity: 0.45;
       content: '';
       position: absolute;
       inset: -4px -7px;
       border-radius: 50%;
-      border: 2.5px solid #E03A50;
+      border: 2.5px solid #7bd88f;
       opacity: 0.45;
-      transform: rotate(5deg) scaleX(1.1);
+      transform: rotate(var(--circle-rotate)) scaleX(0.2) scaleY(0.78);
+      transform-origin: center center;
       filter: url(#crayon-filter);
+      animation: crayonCircle 0.55s ease 0.14s forwards;
+    }
+
+    @keyframes crayonStrike {
+      from { transform: rotate(var(--crayon-rotate)) scaleX(0); }
+      to { transform: rotate(var(--crayon-rotate)) scaleX(1); }
+    }
+
+    @keyframes crayonCircle {
+      from {
+        opacity: 0;
+        transform: rotate(var(--circle-rotate)) scaleX(0.2) scaleY(0.78);
+      }
+      to {
+        opacity: var(--circle-opacity);
+        transform: rotate(var(--circle-rotate)) scaleX(var(--circle-scale-x)) scaleY(var(--circle-scale-y));
+      }
     }
 
     /* SVG filter defs — hidden, just referenced */
