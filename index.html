@@ -1520,7 +1520,7 @@
   <div class="about-strip">
     <div class="about-strip-inner">
       <span class="about-strip-label">Who you're working with.</span>
-      <div class="bio-text">
+      <div class="bio-text reveal">
         <p>
           I'm Alfredo, a web developer and local SEO guy in
           <span class="location-wrap">
@@ -1530,8 +1530,8 @@
             San Antonio, Texas
           </span>,
           working directly with local service businesses.
-          No&nbsp;<span class="word-crossed">middleman</span>.
-          No&nbsp;<span class="word-crossed">agency layers</span>.
+          No <span class="word-crossed word-crossed-blue" data-line-start="0" data-line-span="0.34">middleman</span>.
+          No <span class="word-crossed word-crossed-yellow" data-line-start="0.28" data-line-span="0.34">agency layers</span>.
           You work with just one person that is,&nbsp;<span class="word-circled">me</span>.
           I build the site, run your local SEO every month, and aim to have you ranking on
           <span class="google-word"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>
@@ -1581,45 +1581,38 @@
       display: inline-block;
       color: var(--text);
       isolation: isolate;
+      --line-color: #4285f4;
+      --line-rotate: -1.8deg;
+      --line-scale: 0.08;
+      --line-opacity: 0;
     }
 
-    /* Two layered crayon lines through the word */
-    .word-crossed::before,
     .word-crossed::after {
       content: '';
       position: absolute;
-      left: -2px;
-      right: -2px;
-      pointer-events: none;
-    }
-
-    /* Main thick crayon stroke */
-    .word-crossed::before {
-      --crayon-rotate: -1.5deg;
-      top: 46%;
-      height: 4px;
-      background: #fbbc05;
-      border-radius: 2px;
-      opacity: 0.92;
-      transform: rotate(var(--crayon-rotate)) scaleX(0);
-      transform-origin: left center;
-      /* Crayon texture via SVG filter applied via filter property */
-      filter: url(#crayon-filter);
-      animation: crayonStrike 0.5s ease forwards;
-    }
-
-    /* Second thinner wobble stroke */
-    .word-crossed::after {
-      --crayon-rotate: 0.8deg;
-      top: 54%;
-      height: 2.5px;
-      background: #4285f4;
-      border-radius: 2px;
-      opacity: 0.5;
-      transform: rotate(var(--crayon-rotate)) scaleX(0);
+      left: -3px;
+      right: -3px;
+      top: 50%;
+      height: 0.42em;
+      border-radius: 999px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0) 38%),
+        var(--line-color);
+      opacity: var(--line-opacity);
+      transform: translateY(-50%) rotate(var(--line-rotate)) scaleX(var(--line-scale));
       transform-origin: left center;
       filter: url(#crayon-filter);
-      animation: crayonStrike 0.5s ease 0.12s forwards;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .word-crossed-blue {
+      --line-color: #4285f4;
+      --line-rotate: -2deg;
+    }
+
+    .word-crossed-yellow {
+      --line-color: #fbbc05;
+      --line-rotate: 1.4deg;
     }
 
     /* ════════════════════════
@@ -1632,6 +1625,8 @@
       font-weight: 600;
       padding: 0 3px;
       isolation: isolate;
+      --circle-progress: 0.2;
+      --circle-opacity-live: 0;
     }
 
     .word-circled::before {
@@ -1644,11 +1639,10 @@
       inset: -6px -10px;
       border-radius: 50%;
       border: 4px solid #34a853;
-      opacity: 0.9;
-      transform: rotate(var(--circle-rotate)) scaleX(0.2) scaleY(0.75);
+      opacity: var(--circle-opacity-live);
+      transform: rotate(var(--circle-rotate)) scaleX(calc(0.2 + (var(--circle-progress) * 0.95))) scaleY(calc(0.75 + (var(--circle-progress) * 0.25)));
       transform-origin: center center;
       filter: url(#crayon-filter);
-      animation: crayonCircle 0.55s ease forwards;
     }
 
     .word-circled::after {
@@ -1661,27 +1655,10 @@
       inset: -4px -7px;
       border-radius: 50%;
       border: 2.5px solid #7bd88f;
-      opacity: 0.45;
-      transform: rotate(var(--circle-rotate)) scaleX(0.2) scaleY(0.78);
+      opacity: calc(var(--circle-opacity-live) * 0.5);
+      transform: rotate(var(--circle-rotate)) scaleX(calc(0.2 + (var(--circle-progress) * 0.9))) scaleY(calc(0.78 + (var(--circle-progress) * 0.22)));
       transform-origin: center center;
       filter: url(#crayon-filter);
-      animation: crayonCircle 0.55s ease 0.14s forwards;
-    }
-
-    @keyframes crayonStrike {
-      from { transform: rotate(var(--crayon-rotate)) scaleX(0); }
-      to { transform: rotate(var(--crayon-rotate)) scaleX(1); }
-    }
-
-    @keyframes crayonCircle {
-      from {
-        opacity: 0;
-        transform: rotate(var(--circle-rotate)) scaleX(0.2) scaleY(0.78);
-      }
-      to {
-        opacity: var(--circle-opacity);
-        transform: rotate(var(--circle-rotate)) scaleX(var(--circle-scale-x)) scaleY(var(--circle-scale-y));
-      }
     }
 
     /* SVG filter defs — hidden, just referenced */
@@ -2499,6 +2476,48 @@
     }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal, .reveal-group').forEach(el => observer.observe(el));
+
+    // Scroll-drawn crayon cross-outs in the bio section
+    (function() {
+      const bioText = document.querySelector('.bio-text');
+      const crossedWords = bioText ? bioText.querySelectorAll('.word-crossed') : [];
+      const circledWord = bioText ? bioText.querySelector('.word-circled') : null;
+      if (!bioText || (!crossedWords.length && !circledWord)) return;
+
+      function updateBioCrossouts() {
+        const rect = bioText.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const sectionProgress = Math.min(
+          Math.max(((viewportHeight * 0.88) - rect.top) / (viewportHeight * 0.92), 0),
+          1
+        );
+
+        crossedWords.forEach((word) => {
+          const start = parseFloat(word.dataset.lineStart || '0');
+          const span = parseFloat(word.dataset.lineSpan || '0.34');
+          const localProgress = Math.min(Math.max((sectionProgress - start) / span, 0), 1);
+          const scale = 0.08 + (localProgress * 0.92);
+          const opacity = localProgress <= 0 ? 0 : (0.28 + (localProgress * 0.64));
+
+          word.style.setProperty('--line-scale', scale.toFixed(3));
+          word.style.setProperty('--line-opacity', Math.min(opacity, 0.92).toFixed(3));
+        });
+
+        if (circledWord) {
+          const circleStart = 0.56;
+          const circleSpan = 0.28;
+          const circleProgress = Math.min(Math.max((sectionProgress - circleStart) / circleSpan, 0), 1);
+          const circleOpacity = circleProgress <= 0 ? 0 : (0.22 + (circleProgress * 0.68));
+
+          circledWord.style.setProperty('--circle-progress', circleProgress.toFixed(3));
+          circledWord.style.setProperty('--circle-opacity-live', Math.min(circleOpacity, 0.9).toFixed(3));
+        }
+      }
+
+      window.addEventListener('scroll', updateBioCrossouts, { passive: true });
+      window.addEventListener('resize', updateBioCrossouts);
+      updateBioCrossouts();
+    })();
 
     // ── Stacking service cards ────────────────────────────────────────────────
     (function() {
