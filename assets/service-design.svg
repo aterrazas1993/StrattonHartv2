@@ -1,0 +1,21 @@
+<svg width="480" height="320" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="32" y1="22" x2="420" y2="288" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1C1515"/>
+      <stop offset="1" stop-color="#120E0F"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="460" height="300" rx="28" fill="url(#bg)" stroke="#3A3535" stroke-width="2"/>
+  <circle cx="148" cy="166" r="76" fill="#241818"/>
+  <circle cx="128" cy="146" r="28" fill="#F05A6E"/>
+  <circle cx="170" cy="126" r="22" fill="#F87E8A"/>
+  <circle cx="192" cy="170" r="20" fill="#FBB3BB"/>
+  <circle cx="146" cy="198" r="24" fill="#D34255"/>
+  <circle cx="146" cy="166" r="18" fill="#181314"/>
+  <path d="M282 98L360 176" stroke="#F87E8A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M340 78L380 118" stroke="#FBB3BB" stroke-width="14" stroke-linecap="round"/>
+  <rect x="250" y="182" width="126" height="24" rx="12" fill="#FBB3BB"/>
+  <rect x="250" y="220" width="94" height="16" rx="8" fill="#6E6363"/>
+  <rect x="250" y="246" width="110" height="16" rx="8" fill="#6E6363"/>
+  <text x="54" y="58" fill="#FBB3BB" font-family="Inter, Arial, sans-serif" font-size="22" letter-spacing="2">DESIGN</text>
+</svg>

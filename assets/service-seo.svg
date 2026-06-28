@@ -1,0 +1,26 @@
+<svg width="480" height="320" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="36" y1="32" x2="444" y2="288" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#221818"/>
+      <stop offset="1" stop-color="#171313"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="108" y1="228" x2="350" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C42940"/>
+      <stop offset="1" stop-color="#F87E8A"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="460" height="300" rx="28" fill="url(#bg)" stroke="#3A3535" stroke-width="2"/>
+  <circle cx="360" cy="92" r="58" fill="#2C1B1D"/>
+  <circle cx="360" cy="92" r="42" fill="none" stroke="#F05A6E" stroke-width="10"/>
+  <path d="M388 122L420 154" stroke="#F05A6E" stroke-width="14" stroke-linecap="round"/>
+  <rect x="56" y="196" width="44" height="64" rx="12" fill="#6A2A33"/>
+  <rect x="116" y="164" width="44" height="96" rx="12" fill="#8C3140"/>
+  <rect x="176" y="126" width="44" height="134" rx="12" fill="#B03C4D"/>
+  <rect x="236" y="88" width="44" height="172" rx="12" fill="url(#accent)"/>
+  <path d="M66 108C96 116 126 120 156 114C190 106 218 78 250 78C290 78 312 108 350 108" stroke="#FBB3BB" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="66" cy="108" r="7" fill="#FBB3BB"/>
+  <circle cx="156" cy="114" r="7" fill="#FBB3BB"/>
+  <circle cx="250" cy="78" r="7" fill="#FBB3BB"/>
+  <circle cx="350" cy="108" r="7" fill="#FBB3BB"/>
+  <text x="56" y="64" fill="#FBB3BB" font-family="Inter, Arial, sans-serif" font-size="22" letter-spacing="2">SEO</text>
+</svg>

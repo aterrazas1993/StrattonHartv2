@@ -1,0 +1,25 @@
+<svg width="480" height="320" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="34" y1="24" x2="436" y2="294" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1516"/>
+      <stop offset="1" stop-color="#0F0C0D"/>
+    </linearGradient>
+    <linearGradient id="rise" x1="108" y1="240" x2="316" y2="114" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C42940"/>
+      <stop offset="1" stop-color="#F87E8A"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="460" height="300" rx="28" fill="url(#bg)" stroke="#3A3535" stroke-width="2"/>
+  <path d="M76 236H404" stroke="#433A3A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M76 236L140 192L204 206L284 138L342 154L404 94" stroke="url(#rise)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="140" cy="192" r="10" fill="#FBB3BB"/>
+  <circle cx="204" cy="206" r="10" fill="#FBB3BB"/>
+  <circle cx="284" cy="138" r="10" fill="#FBB3BB"/>
+  <circle cx="342" cy="154" r="10" fill="#FBB3BB"/>
+  <circle cx="404" cy="94" r="10" fill="#FBB3BB"/>
+  <path d="M376 94H404V122" stroke="#F05A6E" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="92" y="82" width="86" height="52" rx="16" fill="#241819"/>
+  <text x="110" y="115" fill="#FBB3BB" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700">ADS</text>
+  <rect x="92" y="146" width="118" height="16" rx="8" fill="#746868"/>
+  <rect x="92" y="172" width="96" height="16" rx="8" fill="#746868"/>
+</svg>

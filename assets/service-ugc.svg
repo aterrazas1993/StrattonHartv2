@@ -1,0 +1,21 @@
+<svg width="480" height="320" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="22" x2="430" y2="294" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1C1515"/>
+      <stop offset="1" stop-color="#100E0E"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="460" height="300" rx="28" fill="url(#bg)" stroke="#3A3535" stroke-width="2"/>
+  <rect x="78" y="66" width="116" height="188" rx="26" fill="#1A1415" stroke="#F05A6E" stroke-width="4"/>
+  <rect x="92" y="92" width="88" height="122" rx="18" fill="#F87E8A"/>
+  <circle cx="136" cy="138" r="24" fill="#FFF2F2"/>
+  <path d="M108 188C114 168 126 158 136 158C146 158 158 168 164 188" stroke="#FFF2F2" stroke-width="10" stroke-linecap="round"/>
+  <rect x="118" y="226" width="36" height="8" rx="4" fill="#4B4141"/>
+  <rect x="244" y="92" width="152" height="30" rx="15" fill="#281C1E"/>
+  <rect x="244" y="138" width="120" height="18" rx="9" fill="#FBB3BB"/>
+  <rect x="244" y="170" width="88" height="18" rx="9" fill="#786B6B"/>
+  <rect x="244" y="202" width="104" height="18" rx="9" fill="#786B6B"/>
+  <circle cx="386" cy="196" r="28" fill="#F05A6E"/>
+  <path d="M374 196L384 206L400 188" stroke="#FFF5F5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="78" y="50" fill="#FBB3BB" font-family="Inter, Arial, sans-serif" font-size="22" letter-spacing="2">UGC</text>
+</svg>

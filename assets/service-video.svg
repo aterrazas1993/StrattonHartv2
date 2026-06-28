@@ -1,0 +1,21 @@
+<svg width="480" height="320" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="28" y1="18" x2="440" y2="296" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B1516"/>
+      <stop offset="1" stop-color="#0E0C0D"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="102" y1="78" x2="318" y2="234" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F87E8A"/>
+      <stop offset="1" stop-color="#A82338"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="460" height="300" rx="28" fill="url(#bg)" stroke="#3A3535" stroke-width="2"/>
+  <rect x="66" y="76" width="252" height="156" rx="22" fill="url(#screen)"/>
+  <path d="M168 128L236 154L168 180V128Z" fill="#FFF5F5"/>
+  <path d="M340 114L410 90V218L340 194V114Z" fill="#2C1C1F" stroke="#F05A6E" stroke-width="4"/>
+  <rect x="104" y="252" width="176" height="12" rx="6" fill="#4E4545"/>
+  <circle cx="388" cy="70" r="24" fill="#25191B"/>
+  <path d="M388 58V82" stroke="#FBB3BB" stroke-width="6" stroke-linecap="round"/>
+  <path d="M376 70H400" stroke="#FBB3BB" stroke-width="6" stroke-linecap="round"/>
+  <text x="66" y="56" fill="#FBB3BB" font-family="Inter, Arial, sans-serif" font-size="22" letter-spacing="2">VIDEO</text>
+</svg>

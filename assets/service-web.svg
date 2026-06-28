@@ -1,0 +1,26 @@
+<svg width="480" height="320" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="20" x2="430" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1717"/>
+      <stop offset="1" stop-color="#110F10"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="118" y1="74" x2="344" y2="214" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F87E8A"/>
+      <stop offset="1" stop-color="#C42940"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="460" height="300" rx="28" fill="url(#bg)" stroke="#3A3535" stroke-width="2"/>
+  <rect x="64" y="56" width="352" height="192" rx="20" fill="#181314" stroke="#514949" stroke-width="2"/>
+  <rect x="64" y="56" width="352" height="34" rx="20" fill="#241A1A"/>
+  <circle cx="92" cy="73" r="5" fill="#F05A6E"/>
+  <circle cx="112" cy="73" r="5" fill="#D65A66"/>
+  <circle cx="132" cy="73" r="5" fill="#FBB3BB"/>
+  <rect x="92" y="114" width="130" height="104" rx="18" fill="url(#panel)"/>
+  <rect x="246" y="114" width="142" height="18" rx="9" fill="#FBB3BB" fill-opacity="0.85"/>
+  <rect x="246" y="146" width="110" height="14" rx="7" fill="#7D7070"/>
+  <rect x="246" y="170" width="128" height="14" rx="7" fill="#7D7070"/>
+  <rect x="246" y="194" width="88" height="24" rx="12" fill="#F05A6E"/>
+  <path d="M140 154L116 166L140 178" stroke="#FFF2F2" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M176 154L200 166L176 178" stroke="#FFF2F2" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="92" y="44" fill="#FBB3BB" font-family="Inter, Arial, sans-serif" font-size="22" letter-spacing="2">WEB</text>
+</svg>
