@@ -566,6 +566,9 @@
       width: 230px;
       flex-shrink: 0;
       align-self: center;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+      transform-origin: center center;
+      will-change: transform, opacity;
     }
 
     .service-media img {
@@ -575,6 +578,7 @@
       border: 1px solid rgba(240,90,110,0.22);
       box-shadow: 0 18px 40px rgba(0,0,0,0.18);
       background: rgba(255,255,255,0.03);
+      transition: transform 0.28s ease;
     }
 
     .service-title {
@@ -1328,8 +1332,8 @@
         flex-wrap: wrap;
         padding: 24px 20px;
         margin-bottom: 14px;
-        transform: none !important;
-        opacity: 1 !important;
+        transform: none;
+        opacity: 1;
       }
       .service-card-left {
         width: 100%;
@@ -1364,9 +1368,12 @@
       .service-media {
         width: 100%;
         order: 4;
+        transform: translateY(0) scale(1);
+        opacity: 1;
       }
       .service-media img {
         border-radius: 16px;
+        transform: translateY(0) scale(1);
       }
       .service-num,
       .service-tag {
@@ -2401,15 +2408,26 @@
         if (window.innerWidth <= 900) {
           wraps.forEach((wrap) => {
             const card = wrap.querySelector('.service-card');
+            const media = wrap.querySelector('.service-media');
+            const mediaImage = wrap.querySelector('.service-media img');
             const rect = wrap.getBoundingClientRect();
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const revealProgress = Math.min(Math.max((viewportHeight - rect.top) / (viewportHeight * 0.9), 0), 1);
-            const scale = 0.95 + (revealProgress * 0.05);
-            const translateY = (1 - revealProgress) * 26;
-            const opacity = 0.62 + (revealProgress * 0.38);
+            const mediaScale = 0.94 + (revealProgress * 0.06);
+            const mediaTranslateY = (1 - revealProgress) * 18;
+            const mediaOpacity = 0.68 + (revealProgress * 0.32);
 
-            card.style.transform = `translateY(${translateY}px) scale(${scale})`;
-            card.style.opacity = String(Math.min(Math.max(opacity, 0.62), 1));
+            card.style.transform = 'none';
+            card.style.opacity = '1';
+
+            if (media) {
+              media.style.transform = `translateY(${mediaTranslateY}px) scale(${mediaScale})`;
+              media.style.opacity = String(Math.min(Math.max(mediaOpacity, 0.68), 1));
+            }
+
+            if (mediaImage) {
+              mediaImage.style.transform = `scale(${0.985 + (revealProgress * 0.015)})`;
+            }
           });
           return;
         }
@@ -2417,13 +2435,25 @@
         if (supportsScrollTimeline) {
           wraps.forEach((wrap) => {
             const card = wrap.querySelector('.service-card');
+            const media = wrap.querySelector('.service-media');
+            const mediaImage = wrap.querySelector('.service-media img');
             card.style.opacity = '1';
+            card.style.transform = '';
+            if (media) {
+              media.style.transform = '';
+              media.style.opacity = '';
+            }
+            if (mediaImage) {
+              mediaImage.style.transform = '';
+            }
           });
           return;
         }
 
         wraps.forEach((wrap, i) => {
           const card = wrap.querySelector('.service-card');
+          const media = wrap.querySelector('.service-media');
+          const mediaImage = wrap.querySelector('.service-media img');
           const rect = wrap.getBoundingClientRect();
           const stickyTop = parseInt(getComputedStyle(wrap).top) || 160;
 
@@ -2442,6 +2472,15 @@
           } else {
             card.style.transform = 'scale(1)';
             card.style.opacity   = '1';
+          }
+
+          if (media) {
+            media.style.transform = '';
+            media.style.opacity = '';
+          }
+
+          if (mediaImage) {
+            mediaImage.style.transform = '';
           }
         });
       }
