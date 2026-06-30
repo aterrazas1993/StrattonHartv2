@@ -686,6 +686,16 @@
       color: var(--primary);
     }
 
+    .services-mobile-note {
+      display: none;
+      margin-top: 16px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
     /* Scale-down as cards collapse — driven by JS */
     .service-card-wrap.collapsed .service-card {
       box-shadow: 0 -2px 0 0 var(--border);
@@ -1511,9 +1521,18 @@
       .services-stack-outer {
         position: static;
         padding-bottom: 0;
-        display: block;
-        gap: 0;
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        overscroll-behavior-x: contain;
+        padding-inline: 24px;
+        margin-inline: -24px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
+      .services-stack-outer::-webkit-scrollbar { display: none; }
       .service-card-wrap,
       .service-card-wrap:nth-child(1),
       .service-card-wrap:nth-child(2),
@@ -1525,14 +1544,19 @@
         top: auto;
         z-index: auto;
         padding-top: 0;
+        flex: 0 0 calc(86% - 2px);
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
       }
       .service-card {
         gap: 18px;
         flex-wrap: wrap;
         padding: 24px 20px;
-        margin-bottom: 14px;
+        margin-bottom: 0;
         transform: none;
         opacity: 1;
+        height: 100%;
+        min-height: 100%;
       }
       .service-card-left {
         width: 100%;
@@ -1579,6 +1603,9 @@
         max-width: 100%;
       }
       .service-arrow { display: none; }
+      .services-mobile-note {
+        display: block;
+      }
       .steps-carousel-shell {
         margin-top: 34px;
       }
@@ -1858,6 +1885,7 @@
         <p class="section-eyebrow reveal">Our services.</p>
         <h2 class="section-title reveal">Everything your brand needs to dominate.</h2>
         <p class="section-desc reveal" style="margin-bottom:0;">One agency, every channel. We cover the full spectrum of digital marketing so nothing falls through the cracks.</p>
+        <p class="services-mobile-note">Swipe to see all services</p>
       </div>
     </div>
 
