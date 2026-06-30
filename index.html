@@ -725,34 +725,164 @@
     /* ════════════════════════════
        STEPS
     ════════════════════════════ */
-    .step-row {
-      display: flex;
-      gap: 32px;
-      padding: 36px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: flex-start;
+    .steps-carousel-shell {
+      margin-top: 48px;
+      position: relative;
     }
 
-    .step-row:last-child { border-bottom: none; }
+    .steps-carousel-frame {
+      position: relative;
+      padding-inline: 76px;
+    }
+
+    .steps-carousel {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 12px 0 18px;
+      align-items: stretch;
+    }
+
+    .steps-carousel::-webkit-scrollbar { display: none; }
+
+    .step-card {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      flex: 0 0 calc(100% - 2px);
+      min-width: 0;
+      background:
+        linear-gradient(180deg, rgba(240,90,110,0.10) 0%, rgba(240,90,110,0.02) 100%),
+        var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      display: grid;
+      gap: 20px;
+      min-height: 320px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+      transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease, opacity 0.32s ease;
+    }
+
+    .step-card.is-active {
+      border-color: rgba(240,90,110,0.42);
+      box-shadow: 0 32px 72px rgba(0,0,0,0.28), 0 0 0 1px rgba(240,90,110,0.16);
+    }
+
+    .step-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
 
     .step-num {
       font-family: var(--font-display);
-      font-size: 52px;
+      font-size: clamp(2.7rem, 5vw, 4.5rem);
       font-weight: 800;
-      color: var(--border);
-      line-height: 1;
-      min-width: 76px;
+      color: rgba(240,90,110,0.24);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .step-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(240,90,110,0.24);
+      background: rgba(240,90,110,0.08);
+      color: var(--primary-xl);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .step-body {
+      display: grid;
+      gap: 12px;
+      align-content: start;
     }
 
     .step-body h4 {
       font-family: var(--font-display);
-      font-size: 20px;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
       font-weight: 700;
       color: var(--white);
-      margin-bottom: 8px;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
     }
 
-    .step-body p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .step-body p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.72;
+      max-width: 40rem;
+    }
+
+    .steps-carousel-nav {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .carousel-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border-lt);
+      background: rgba(15,15,15,0.84);
+      color: var(--white);
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .carousel-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      border-color: rgba(240,90,110,0.44);
+      background: rgba(240,90,110,0.14);
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .carousel-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.18);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+      opacity: 0.72;
+    }
+
+    .carousel-dot.is-active {
+      background: var(--primary);
+      transform: scale(1.15);
+      opacity: 1;
+    }
 
     /* ════════════════════════════
        REVIEWS
@@ -1449,6 +1579,51 @@
         max-width: 100%;
       }
       .service-arrow { display: none; }
+      .steps-carousel-shell {
+        margin-top: 34px;
+      }
+      .steps-carousel-frame {
+        padding-inline: 0;
+      }
+      .steps-carousel {
+        gap: 14px;
+        padding: 8px 6px 14px;
+        scroll-padding-inline: 6px;
+      }
+      .step-card {
+        flex-basis: calc(86% - 2px);
+        gap: 14px;
+        min-height: 280px;
+        padding: 24px 20px;
+        border-radius: 20px;
+      }
+      .step-card-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .step-tag {
+        white-space: normal;
+      }
+      .step-body h4 {
+        font-size: 1.5rem;
+      }
+      .step-body p {
+        font-size: 14px;
+        line-height: 1.65;
+      }
+      .steps-carousel-nav {
+        margin-top: 14px;
+        gap: 10px;
+      }
+      .carousel-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+      }
+      .carousel-dots {
+        gap: 8px;
+      }
       .reviews-grid, .portfolio-grid, .pricing-grid { grid-template-columns: 1fr; }
       .why-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
@@ -1838,44 +2013,79 @@
   <!-- ══ HOW IT WORKS ══ -->
   <section class="section" style="padding-top:0;">
     <p class="section-eyebrow reveal">How it works.</p>
-    <h2 class="section-title reveal">From first call to first page of Google.</h2>
-    <p class="section-desc reveal">A clear, no-fluff process from kickoff to measurable results.</p>
+    <h2 class="section-title reveal">No agency runaround.</h2>
+    <p class="section-desc reveal">A clear path from first message to ranking on Google. Same person every step.</p>
 
-    <div class="reveal-group">
-      <div class="step-row">
-        <div class="step-num">01</div>
-        <div class="step-body">
-          <h4>Book a free strategy call</h4>
-          <p>We learn about your business, market, and goals. No pressure, no pitch deck — just a real conversation about what will actually move the needle.</p>
+    <div class="steps-carousel-shell reveal-group">
+      <div class="steps-carousel-frame">
+        <div class="steps-carousel" id="steps-carousel" aria-label="How Stratton Hart works">
+          <article class="step-card is-active" data-step-card>
+            <div class="step-card-top">
+              <div class="step-num">01</div>
+              <div class="step-tag">Start Here</div>
+            </div>
+            <div class="step-body">
+              <h4>Send the first message</h4>
+              <p>You reach out, we talk through your business and goals, and we map out what will actually help. No pressure and no handoff maze.</p>
+            </div>
+          </article>
+
+          <article class="step-card" data-step-card>
+            <div class="step-card-top">
+              <div class="step-num">02</div>
+              <div class="step-tag">Clear Plan</div>
+            </div>
+            <div class="step-body">
+              <h4>Get a clear game plan</h4>
+              <p>You get a straightforward plan for your website, SEO, content, or ads, built around your budget and the next best move for growth.</p>
+            </div>
+          </article>
+
+          <article class="step-card" data-step-card>
+            <div class="step-card-top">
+              <div class="step-num">03</div>
+              <div class="step-tag">Fast Build</div>
+            </div>
+            <div class="step-body">
+              <h4>Build and launch fast</h4>
+              <p>Your site, search setup, and creative assets start moving quickly, with the same person guiding the work from kickoff through launch.</p>
+            </div>
+          </article>
+
+          <article class="step-card" data-step-card>
+            <div class="step-card-top">
+              <div class="step-num">04</div>
+              <div class="step-tag">Monthly Work</div>
+            </div>
+            <div class="step-body">
+              <h4>Keep growing every month</h4>
+              <p>Monthly SEO, updates, content, and marketing support keep your business showing up stronger without you wondering who is handling what.</p>
+            </div>
+          </article>
+
+          <article class="step-card" data-step-card>
+            <div class="step-card-top">
+              <div class="step-num">05</div>
+              <div class="step-tag">More Calls</div>
+            </div>
+            <div class="step-body">
+              <h4>Turn visibility into calls</h4>
+              <p>The goal is simple: better rankings, more trust, and more leads from people already looking for what you offer.</p>
+            </div>
+          </article>
         </div>
       </div>
-      <div class="step-row">
-        <div class="step-num">02</div>
-        <div class="step-body">
-          <h4>We build your custom plan</h4>
-          <p>A tailored roadmap covering SEO, content, design, and paid channels — built around your specific market and budget.</p>
+
+      <div class="steps-carousel-nav" aria-label="Carousel navigation">
+        <button class="carousel-btn" id="steps-prev" type="button" aria-label="Previous step">‹</button>
+        <div class="carousel-dots" id="steps-dots" aria-label="Step indicators">
+          <button class="carousel-dot is-active" type="button" aria-label="Go to step 1"></button>
+          <button class="carousel-dot" type="button" aria-label="Go to step 2"></button>
+          <button class="carousel-dot" type="button" aria-label="Go to step 3"></button>
+          <button class="carousel-dot" type="button" aria-label="Go to step 4"></button>
+          <button class="carousel-dot" type="button" aria-label="Go to step 5"></button>
         </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">03</div>
-        <div class="step-body">
-          <h4>Launch &amp; execute</h4>
-          <p>We get to work — website, Google Business Profile, SEO groundwork, content, and creative assets all go live fast.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">04</div>
-        <div class="step-body">
-          <h4>Monthly growth work</h4>
-          <p>Ongoing SEO, content, ads management, and creative production — every month, consistently, with full reporting.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">05</div>
-        <div class="step-body">
-          <h4>Rankings, leads &amp; revenue</h4>
-          <p>Visible on Google, converting traffic into calls and customers. Real results you can measure within 90 days.</p>
-        </div>
+        <button class="carousel-btn" id="steps-next" type="button" aria-label="Next step">›</button>
       </div>
     </div>
   </section>
@@ -2678,6 +2888,93 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll);
       onScroll();
+    })();
+
+    // How-it-works carousel
+    (function() {
+      const carousel = document.getElementById('steps-carousel');
+      const prevBtn = document.getElementById('steps-prev');
+      const nextBtn = document.getElementById('steps-next');
+      const cards = carousel ? Array.from(carousel.querySelectorAll('[data-step-card]')) : [];
+      const dots = Array.from(document.querySelectorAll('#steps-dots .carousel-dot'));
+      if (!carousel || !prevBtn || !nextBtn || !cards.length || dots.length !== cards.length) return;
+
+      let activeIndex = 0;
+
+      function getNearestIndex() {
+        const carouselRect = carousel.getBoundingClientRect();
+        const carouselCenter = carouselRect.left + (carouselRect.width / 2);
+        let nearest = 0;
+        let smallestDistance = Infinity;
+
+        cards.forEach((card, index) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + (rect.width / 2);
+          const distance = Math.abs(cardCenter - carouselCenter);
+          if (distance < smallestDistance) {
+            smallestDistance = distance;
+            nearest = index;
+          }
+        });
+
+        return nearest;
+      }
+
+      function updateCarousel(index) {
+        activeIndex = index;
+        cards.forEach((card, cardIndex) => {
+          card.classList.toggle('is-active', cardIndex === index);
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('is-active', dotIndex === index);
+          dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+        });
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === cards.length - 1;
+      }
+
+      function scrollToCard(index) {
+        const targetCard = cards[index];
+        const targetLeft = targetCard.offsetLeft - cards[0].offsetLeft;
+        carousel.scrollTo({
+          left: targetLeft,
+          behavior: 'smooth'
+        });
+        updateCarousel(index);
+      }
+
+      prevBtn.addEventListener('click', () => {
+        scrollToCard(Math.max(activeIndex - 1, 0));
+      });
+
+      nextBtn.addEventListener('click', () => {
+        scrollToCard(Math.min(activeIndex + 1, cards.length - 1));
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => scrollToCard(index));
+      });
+
+      let scrollTicking = false;
+      carousel.addEventListener('scroll', () => {
+        if (scrollTicking) return;
+        scrollTicking = true;
+        requestAnimationFrame(() => {
+          updateCarousel(getNearestIndex());
+          scrollTicking = false;
+        });
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        const nearest = getNearestIndex();
+        updateCarousel(nearest);
+        const targetCard = cards[nearest];
+        if (targetCard) {
+          carousel.scrollTo({ left: targetCard.offsetLeft - cards[0].offsetLeft });
+        }
+      });
+
+      updateCarousel(0);
     })();
 
     // Nav background on scroll
