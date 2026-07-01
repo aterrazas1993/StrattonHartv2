@@ -818,10 +818,12 @@
         var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 32px;
+      padding: 24px;
       display: grid;
-      gap: 20px;
-      min-height: 320px;
+      grid-template-columns: minmax(0, 1.05fr) 290px;
+      gap: 24px;
+      align-items: stretch;
+      min-height: 340px;
       box-shadow: 0 24px 60px rgba(0,0,0,0.22);
       transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease, opacity 0.32s ease;
     }
@@ -829,6 +831,13 @@
     .step-card.is-active {
       border-color: rgba(240,90,110,0.42);
       box-shadow: 0 32px 72px rgba(0,0,0,0.28), 0 0 0 1px rgba(240,90,110,0.16);
+    }
+
+    .step-card-copy {
+      display: grid;
+      gap: 20px;
+      align-content: start;
+      min-width: 0;
     }
 
     .step-card-top {
@@ -883,6 +892,25 @@
       font-size: 15px;
       line-height: 1.72;
       max-width: 40rem;
+    }
+
+    .step-media {
+      min-width: 0;
+      height: 100%;
+      min-height: 290px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(240,90,110,0.22);
+      box-shadow: 0 18px 42px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.03);
+      align-self: stretch;
+    }
+
+    .step-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .steps-carousel-nav {
@@ -1546,6 +1574,46 @@
       nav { padding: 14px 24px; }
       .nav-links { display: none; }
       .hero, .section { padding-left: 24px; padding-right: 24px; }
+      .hero {
+        min-height: auto;
+        padding-top: 118px;
+        padding-bottom: 72px;
+      }
+      .hero h1 {
+        margin-bottom: 22px;
+        letter-spacing: -1.7px;
+      }
+      .hero-sub {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 34px;
+      }
+      .hero-ctas {
+        width: 100%;
+        gap: 10px;
+      }
+      .hero-ctas .btn-primary,
+      .hero-ctas .btn-ghost {
+        justify-content: center;
+      }
+      .hero-ctas .btn-primary {
+        width: 100%;
+      }
+      .hero-ctas .btn-ghost {
+        flex: 1 1 calc(50% - 5px);
+        min-width: 0;
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+      .section {
+        padding-top: 82px;
+        padding-bottom: 82px;
+      }
+      .section-desc {
+        font-size: 16px;
+        line-height: 1.72;
+        margin-bottom: 42px;
+      }
       .hero-stickies {
         gap: 10px;
         margin-bottom: 20px;
@@ -1561,6 +1629,10 @@
         top: -8px;
       }
       .about-strip-inner { flex-direction: column; gap: 10px; padding: 36px 24px; }
+      .bio-text {
+        font-size: 15px;
+        line-height: 1.82;
+      }
       .services-sticky-header {
         position: static;
         top: auto;
@@ -1672,11 +1744,15 @@
         scroll-padding-inline: 6px;
       }
       .step-card {
+        grid-template-columns: 1fr;
         flex-basis: calc(86% - 2px);
         gap: 14px;
         min-height: 280px;
-        padding: 24px 20px;
+        padding: 20px;
         border-radius: 20px;
+      }
+      .step-card-copy {
+        gap: 16px;
       }
       .step-card-top {
         flex-direction: column;
@@ -1693,6 +1769,10 @@
         font-size: 14px;
         line-height: 1.65;
       }
+      .step-media {
+        order: -1;
+        min-height: 210px;
+      }
       .steps-carousel-nav {
         margin-top: 14px;
         gap: 10px;
@@ -1706,6 +1786,18 @@
         gap: 8px;
       }
       .reviews-grid, .portfolio-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .review-card {
+        padding: 22px;
+      }
+      .portfolio-more {
+        padding: 24px 22px;
+      }
+      .pricing-card {
+        padding: 26px 22px;
+      }
+      .plan-price {
+        font-size: 40px;
+      }
       .why-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .cta-banner-inner { flex-direction: column; align-items: flex-start; }
@@ -1963,7 +2055,7 @@
             </div>
           </div>
           <div class="service-media">
-            <img src="./assets/service-seo.svg" alt="Illustration representing SEO and Google rankings growth" />
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Laptop showing SEO analytics and search performance charts" loading="lazy" decoding="async" />
           </div>
           <span class="service-arrow">→</span>
         </a>
@@ -1987,7 +2079,7 @@
             </div>
           </div>
           <div class="service-media">
-            <img src="./assets/service-web.svg" alt="Illustration representing website design and development" />
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Developer workspace with code on a laptop screen" loading="lazy" decoding="async" />
           </div>
           <span class="service-arrow">→</span>
         </a>
@@ -2011,7 +2103,7 @@
             </div>
           </div>
           <div class="service-media">
-            <img src="./assets/service-design.svg" alt="Illustration representing graphic design and branding" />
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Creative desk setup with design tools and branding work" loading="lazy" decoding="async" />
           </div>
           <span class="service-arrow">→</span>
         </a>
@@ -2035,7 +2127,7 @@
             </div>
           </div>
           <div class="service-media">
-            <img src="./assets/service-video.svg" alt="Illustration representing video production" />
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80" alt="Professional camera setup for video production" loading="lazy" decoding="async" />
           </div>
           <span class="service-arrow">→</span>
         </a>
@@ -2059,7 +2151,7 @@
             </div>
           </div>
           <div class="service-media">
-            <img src="./assets/service-ugc.svg" alt="Illustration representing user generated content creation" />
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Content creator filming social media content on a phone" loading="lazy" decoding="async" />
           </div>
           <span class="service-arrow">→</span>
         </a>
@@ -2083,7 +2175,7 @@
             </div>
           </div>
           <div class="service-media">
-            <img src="./assets/service-ads.svg" alt="Illustration representing paid ads and growth strategy" />
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Marketing strategy meeting focused on growth and paid advertising" loading="lazy" decoding="async" />
           </div>
           <span class="service-arrow">→</span>
         </a>
@@ -2115,57 +2207,82 @@
       <div class="steps-carousel-frame">
         <div class="steps-carousel" id="steps-carousel" aria-label="How Stratton Hart works">
           <article class="step-card is-active" data-step-card>
-            <div class="step-card-top">
-              <div class="step-num">01</div>
-              <div class="step-tag">Start Here</div>
+            <div class="step-card-copy">
+              <div class="step-card-top">
+                <div class="step-num">01</div>
+                <div class="step-tag">Start Here</div>
+              </div>
+              <div class="step-body">
+                <h4>Send the first message</h4>
+                <p>You reach out, we talk through your business and goals, and we map out what will actually help. No pressure and no handoff maze.</p>
+              </div>
             </div>
-            <div class="step-body">
-              <h4>Send the first message</h4>
-              <p>You reach out, we talk through your business and goals, and we map out what will actually help. No pressure and no handoff maze.</p>
-            </div>
-          </article>
-
-          <article class="step-card" data-step-card>
-            <div class="step-card-top">
-              <div class="step-num">02</div>
-              <div class="step-tag">Clear Plan</div>
-            </div>
-            <div class="step-body">
-              <h4>Get a clear game plan</h4>
-              <p>You get a straightforward plan for your website, SEO, content, or ads, built around your budget and the next best move for growth.</p>
+            <div class="step-media">
+              <img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80" alt="Business owner sending a first message on a laptop" loading="lazy" decoding="async" />
             </div>
           </article>
 
           <article class="step-card" data-step-card>
-            <div class="step-card-top">
-              <div class="step-num">03</div>
-              <div class="step-tag">Fast Build</div>
+            <div class="step-card-copy">
+              <div class="step-card-top">
+                <div class="step-num">02</div>
+                <div class="step-tag">Clear Plan</div>
+              </div>
+              <div class="step-body">
+                <h4>Get a clear game plan</h4>
+                <p>You get a straightforward plan for your website, SEO, content, or ads, built around your budget and the next best move for growth.</p>
+              </div>
             </div>
-            <div class="step-body">
-              <h4>Build and launch fast</h4>
-              <p>Your site, search setup, and creative assets start moving quickly, with the same person guiding the work from kickoff through launch.</p>
-            </div>
-          </article>
-
-          <article class="step-card" data-step-card>
-            <div class="step-card-top">
-              <div class="step-num">04</div>
-              <div class="step-tag">Monthly Work</div>
-            </div>
-            <div class="step-body">
-              <h4>Keep growing every month</h4>
-              <p>Monthly SEO, updates, content, and marketing support keep your business showing up stronger without you wondering who is handling what.</p>
+            <div class="step-media">
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt="Marketing team planning strategy around a conference table" loading="lazy" decoding="async" />
             </div>
           </article>
 
           <article class="step-card" data-step-card>
-            <div class="step-card-top">
-              <div class="step-num">05</div>
-              <div class="step-tag">More Calls</div>
+            <div class="step-card-copy">
+              <div class="step-card-top">
+                <div class="step-num">03</div>
+                <div class="step-tag">Fast Build</div>
+              </div>
+              <div class="step-body">
+                <h4>Build and launch fast</h4>
+                <p>Your site, search setup, and creative assets start moving quickly, with the same person guiding the work from kickoff through launch.</p>
+              </div>
             </div>
-            <div class="step-body">
-              <h4>Turn visibility into calls</h4>
-              <p>The goal is simple: better rankings, more trust, and more leads from people already looking for what you offer.</p>
+            <div class="step-media">
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Designer and developer building a website on a computer" loading="lazy" decoding="async" />
+            </div>
+          </article>
+
+          <article class="step-card" data-step-card>
+            <div class="step-card-copy">
+              <div class="step-card-top">
+                <div class="step-num">04</div>
+                <div class="step-tag">Monthly Work</div>
+              </div>
+              <div class="step-body">
+                <h4>Keep growing every month</h4>
+                <p>Monthly SEO, updates, content, and marketing support keep your business showing up stronger without you wondering who is handling what.</p>
+              </div>
+            </div>
+            <div class="step-media">
+              <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80" alt="Ongoing monthly digital marketing work on a laptop and notepad" loading="lazy" decoding="async" />
+            </div>
+          </article>
+
+          <article class="step-card" data-step-card>
+            <div class="step-card-copy">
+              <div class="step-card-top">
+                <div class="step-num">05</div>
+                <div class="step-tag">More Calls</div>
+              </div>
+              <div class="step-body">
+                <h4>Turn visibility into calls</h4>
+                <p>The goal is simple: better rankings, more trust, and more leads from people already looking for what you offer.</p>
+              </div>
+            </div>
+            <div class="step-media">
+              <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=900&q=80" alt="Business owner taking customer calls and tracking new leads" loading="lazy" decoding="async" />
             </div>
           </article>
         </div>
