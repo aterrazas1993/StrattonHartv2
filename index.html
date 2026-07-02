@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stratton Hart Marketing Agency | SEO, Google Ranking & Digital Growth</title>
   <meta name="description" content="Full-service marketing agency delivering SEO, Google rankings, graphic design, video, UGC, and everything in between." />
+  <link rel="canonical" href="https://strattonhart.com/" />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
+  <meta name="theme-color" content="#0d0c0c" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://strattonhart.com/" />
+  <meta property="og:site_name" content="Stratton Hart Marketing Agency" />
+  <meta property="og:title" content="Stratton Hart Marketing Agency | SEO, Google Ranking & Digital Growth" />
+  <meta property="og:description" content="Full-service marketing agency delivering SEO, Google rankings, graphic design, video, UGC, and everything in between." />
+  <meta property="og:image" content="https://strattonhart.com/assets/logo.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Stratton Hart Marketing Agency | SEO, Google Ranking & Digital Growth" />
+  <meta name="twitter:description" content="Full-service marketing agency delivering SEO, Google rankings, graphic design, video, UGC, and everything in between." />
+  <meta name="twitter:image" content="https://strattonhart.com/assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
@@ -1825,6 +1843,35 @@
       .cookie-banner { white-space: normal; width: calc(100% - 32px); }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Stratton Hart Marketing Agency",
+    "url": "https://strattonhart.com/",
+    "logo": "https://strattonhart.com/assets/logo.png",
+    "image": "https://strattonhart.com/assets/logo.png",
+    "description": "Full-service digital marketing agency in San Antonio, TX offering SEO, web design, graphic design, video production, UGC, and paid advertising for local service businesses.",
+    "telephone": "+1-210-975-2016",
+    "email": "strattonhartcorp@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "San Antonio",
+      "addressRegion": "TX",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 29.4241,
+      "longitude": -98.4936
+    },
+    "areaServed": [
+      { "@type": "City", "name": "San Antonio" },
+      { "@type": "Country", "name": "United States" }
+    ],
+    "priceRange": "$100 - $500 per month"
+  }
+  </script>
 </head>
 <body>
 
@@ -2935,10 +2982,39 @@
   <div class="cookie-banner" id="cookie">
     We use cookies to improve your experience on our site.
     <div class="cookie-btns">
-      <button class="cookie-ok" onclick="document.getElementById('cookie').classList.add('hidden')">Accept</button>
-      <button class="cookie-no" onclick="document.getElementById('cookie').classList.add('hidden')">Decline</button>
+      <button class="cookie-ok" onclick="shCookieChoice('accepted')">Accept</button>
+      <button class="cookie-no" onclick="shCookieChoice('declined')">Decline</button>
     </div>
   </div>
+
+  <script>
+    (function() {
+      var GA_ID = 'G-XXXXXXXXXX'; // TODO: replace with real GA4 Measurement ID
+      var banner = document.getElementById('cookie');
+      function loadGA() {
+        if (GA_ID === 'G-XXXXXXXXXX') return; // skip until a real ID is configured
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_ID, { anonymize_ip: true });
+      }
+      var consent = localStorage.getItem('sh-cookie-consent');
+      if (consent) {
+        banner.classList.add('hidden');
+        if (consent === 'accepted') loadGA();
+      }
+      window.shCookieChoice = function(choice) {
+        localStorage.setItem('sh-cookie-consent', choice);
+        banner.classList.add('hidden');
+        if (choice === 'accepted') loadGA();
+      };
+    })();
+  </script>
 
   <script>
     // Scroll reveal
