@@ -3072,6 +3072,175 @@
       gap: 8px;
     }
 
+    .ai-flyer-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .ai-flyer-copy,
+    .ai-flyer-promise,
+    .ai-flyer-card {
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border-radius: 20px;
+    }
+
+    .ai-flyer-copy,
+    .ai-flyer-promise {
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-flyer-copy {
+      background:
+        radial-gradient(circle at top left, rgba(240,90,110,0.14), transparent 32%),
+        linear-gradient(160deg, rgba(240,90,110,0.06), rgba(255,255,255,0.01)),
+        var(--card-bg);
+    }
+
+    .ai-flyer-price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(240,90,110,0.25);
+      background: rgba(240,90,110,0.10);
+      color: var(--primary-lt);
+      font-family: var(--font-display);
+      letter-spacing: -0.4px;
+    }
+
+    .ai-flyer-price strong {
+      font-size: 30px;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .ai-flyer-price span {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-weight: 700;
+    }
+
+    .ai-flyer-copy h3,
+    .ai-flyer-promise h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1.06;
+      letter-spacing: -0.8px;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .ai-flyer-copy p,
+    .ai-flyer-promise p,
+    .ai-flyer-card p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .ai-flyer-points {
+      list-style: none;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 10px;
+      padding: 0;
+    }
+
+    .ai-flyer-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .ai-flyer-points li::before {
+      content: '•';
+      color: var(--primary);
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .ai-flyer-promise {
+      display: grid;
+      gap: 16px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(240,90,110,0.05)),
+        var(--card-bg);
+    }
+
+    .ai-flyer-promise .service-tag {
+      width: fit-content;
+      padding-inline: 14px;
+    }
+
+    .ai-flyer-quote {
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--white);
+    }
+
+    .ai-flyer-gallery {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .ai-flyer-card {
+      overflow: hidden;
+      transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .ai-flyer-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(240,90,110,0.35);
+      box-shadow: 0 12px 36px rgba(240,90,110,0.12);
+    }
+
+    .ai-flyer-card-image {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #111;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ai-flyer-card-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .ai-flyer-card-body {
+      padding: 18px 18px 20px;
+    }
+
+    .ai-flyer-card h4 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+
     /* Responsive */
     @media (max-width: 900px) {
       .portfolio-featured {
@@ -3085,8 +3254,79 @@
       .portfolio-featured-info { padding: 28px !important; }
       .browser-screen { height: 240px; }
       .browser-screen iframe { transform: scale(0.39); }
+      .ai-flyer-showcase,
+      .ai-flyer-gallery {
+        grid-template-columns: 1fr;
+      }
+      .ai-flyer-copy,
+      .ai-flyer-promise {
+        padding: 26px;
+      }
     }
   </style>
+
+  <!-- ══ AI FLYERS ══ -->
+  <section class="section" style="padding-top:0;" id="ai-flyers">
+    <p class="section-eyebrow reveal">AI flyer design.</p>
+    <h2 class="section-title reveal">$10 flyers that still feel custom.</h2>
+    <p class="section-desc reveal">Need a fast promo piece without paying full custom-design pricing? This is the offer built for that.</p>
+
+    <div class="ai-flyer-showcase reveal-group">
+      <div class="ai-flyer-copy">
+        <div class="ai-flyer-price">
+          <strong>$10</strong>
+          <span>Flyer Design</span>
+        </div>
+        <h3>AI can spread your message fast. We make sure it still looks good.</h3>
+        <p>Let's be honest: AI can do a great job on flyer design too. We don't shy away from using it. We use our own prompts and visual direction to build the flyer around your business, event, or offer, then we tighten the details so it doesn't come back looking like generic AI slop.</p>
+        <ul class="ai-flyer-points">
+          <li>Built from your message, audience, and visual style</li>
+          <li>Cleaned up by hand so it feels sharper and more intentional</li>
+          <li>Great for events, church promotions, local services, and social posts</li>
+        </ul>
+      </div>
+
+      <div class="ai-flyer-promise">
+        <span class="service-tag">Prompted In-House</span>
+        <h3>$10 flyer design. Fast, custom-looking, and ready to post.</h3>
+        <p class="ai-flyer-quote">Low price doesn't have to mean low effort.</p>
+        <p>Yes, AI flyer designs are only $10. We handle the prompting, image direction, layout cleanup, and final touches so you get something fast that still feels polished enough to use with confidence.</p>
+        <a href="#contact" class="btn-primary" style="width:fit-content; margin-top:4px;">Start your flyer →</a>
+      </div>
+    </div>
+
+    <div class="ai-flyer-gallery reveal-group">
+      <article class="ai-flyer-card">
+        <div class="ai-flyer-card-image">
+          <img src="./assets/ai-flyer-texas-picker.jpg" alt="AI-assisted flyer sample for Texas Picker Paqueteria shipping routes and contact information" loading="lazy" decoding="async" />
+        </div>
+        <div class="ai-flyer-card-body">
+          <h4>Local Service Promo</h4>
+          <p>High-visibility layouts for transport, home services, and local offers that need to communicate fast.</p>
+        </div>
+      </article>
+
+      <article class="ai-flyer-card">
+        <div class="ai-flyer-card-image">
+          <img src="./assets/ai-flyer-riverwalk-halloween.jpg" alt="AI-assisted concert flyer sample with bold illustrated event artwork and lineup details" loading="lazy" decoding="async" />
+        </div>
+        <div class="ai-flyer-card-body">
+          <h4>Event Flyer Concepts</h4>
+          <p>Louder, more stylized visuals for parties, concerts, seasonal promos, and attention-grabbing campaigns.</p>
+        </div>
+      </article>
+
+      <article class="ai-flyer-card">
+        <div class="ai-flyer-card-image">
+          <img src="./assets/ai-flyer-youth-meeting.jpg" alt="AI-assisted bilingual church flyer sample showing service times, guest speaker, and location details" loading="lazy" decoding="async" />
+        </div>
+        <div class="ai-flyer-card-body">
+          <h4>Bilingual Church Design</h4>
+          <p>Cleaner layouts for schedules, guest speakers, ministries, and community outreach with English and Spanish messaging.</p>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ══ PRICING ══ -->
   <section class="section" style="padding-top:0;" id="pricing">
