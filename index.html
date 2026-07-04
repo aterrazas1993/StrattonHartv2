@@ -1674,20 +1674,13 @@
       .services-stack-outer {
         position: static;
         padding-bottom: 0;
-        display: flex;
-        align-items: stretch;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 14px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        overscroll-behavior-x: contain;
-        touch-action: pan-y pinch-zoom;
-        -webkit-overflow-scrolling: touch;
+        overflow: visible;
         padding-inline: 24px;
-        margin-inline: -24px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        margin-inline: 0;
+        grid-template-rows: none;
       }
       .services-stack-outer::-webkit-scrollbar { display: none; }
       .service-card-wrap,
@@ -1701,10 +1694,7 @@
         top: auto;
         z-index: auto;
         padding-top: 0;
-        flex: 0 0 calc(86% - 2px);
-        scroll-snap-align: center;
-        scroll-snap-stop: always;
-        display: flex;
+        display: block;
       }
       .service-card {
         display: grid;
@@ -1717,9 +1707,7 @@
         opacity: 1;
         min-height: 100%;
         width: 100%;
-        flex: 1;
         cursor: default;
-        touch-action: pan-y pinch-zoom;
       }
       .service-card-left {
         width: 100%;
@@ -1771,13 +1759,10 @@
       }
       .service-arrow { display: none; }
       .services-mobile-note {
-        display: block;
+        display: none;
       }
       .services-mobile-controls {
-        display: flex;
-        margin-top: 8px;
-        padding-top: 0;
-        padding-bottom: 0;
+        display: none;
       }
       .steps-carousel-shell {
         margin-top: 34px;
@@ -1964,10 +1949,9 @@
         line-height: 1.75;
       }
       .services-stack-outer {
-        gap: 10px;
+        gap: 12px;
         padding-inline: 16px;
-        margin-inline: -16px;
-        scroll-padding-inline: 16px;
+        margin-inline: 0;
       }
       .service-card-wrap,
       .service-card-wrap:nth-child(1),
@@ -1976,7 +1960,7 @@
       .service-card-wrap:nth-child(4),
       .service-card-wrap:nth-child(5),
       .service-card-wrap:nth-child(6) {
-        flex-basis: calc(100% - 40px);
+        width: 100%;
       }
       .service-card {
         padding: 20px 16px;
@@ -2101,17 +2085,11 @@
       .hero-pill-outline:nth-child(3) {
         display: none;
       }
-      .services-mobile-controls,
       .steps-carousel-nav {
         gap: 8px;
       }
-      .services-mobile-btn,
-      .carousel-btn {
-        width: 40px;
-        height: 40px;
-      }
       .services-stack-outer {
-        gap: 8px;
+        gap: 10px;
       }
       .service-card-wrap,
       .service-card-wrap:nth-child(1),
@@ -2120,7 +2098,11 @@
       .service-card-wrap:nth-child(4),
       .service-card-wrap:nth-child(5),
       .service-card-wrap:nth-child(6) {
-        flex-basis: calc(100% - 32px);
+        width: 100%;
+      }
+      .carousel-btn {
+        width: 40px;
+        height: 40px;
       }
       .portfolio-featured-name {
         font-size: 23px;
