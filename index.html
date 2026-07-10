@@ -3241,6 +3241,128 @@
       margin-bottom: 8px;
     }
 
+    .mini-site-offer {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .mini-site-offer-copy,
+    .mini-site-offer-card,
+    .mini-site-offer-note {
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border-radius: 20px;
+    }
+
+    .mini-site-offer-copy,
+    .mini-site-offer-card,
+    .mini-site-offer-note {
+      padding: 30px;
+    }
+
+    .mini-site-offer-copy {
+      background:
+        radial-gradient(circle at top left, rgba(255,184,92,0.12), transparent 30%),
+        linear-gradient(155deg, rgba(240,90,110,0.06), rgba(255,255,255,0.01)),
+        var(--card-bg);
+    }
+
+    .mini-site-offer-price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,184,92,0.24);
+      background: rgba(255,184,92,0.10);
+      color: #ffc86d;
+      font-family: var(--font-display);
+    }
+
+    .mini-site-offer-price strong {
+      font-size: 30px;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .mini-site-offer-price span {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-weight: 700;
+    }
+
+    .mini-site-offer-copy h3,
+    .mini-site-offer-card h3,
+    .mini-site-offer-note h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1.06;
+      letter-spacing: -0.8px;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .mini-site-offer-copy p,
+    .mini-site-offer-card p,
+    .mini-site-offer-note p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .mini-site-offer-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-site-offer-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .mini-site-offer-list li::before {
+      content: '•';
+      color: var(--primary);
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .mini-site-offer-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .mini-site-offer-card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,184,92,0.05)),
+        var(--card-bg);
+    }
+
+    .mini-site-offer-note {
+      background: rgba(255,255,255,0.015);
+    }
+
+    .mini-site-offer-note .service-tag,
+    .mini-site-offer-card .service-tag {
+      width: fit-content;
+      padding-inline: 14px;
+    }
+
     /* Responsive */
     @media (max-width: 900px) {
       .portfolio-featured {
@@ -3255,11 +3377,15 @@
       .browser-screen { height: 240px; }
       .browser-screen iframe { transform: scale(0.39); }
       .ai-flyer-showcase,
-      .ai-flyer-gallery {
+      .ai-flyer-gallery,
+      .mini-site-offer {
         grid-template-columns: 1fr;
       }
       .ai-flyer-copy,
-      .ai-flyer-promise {
+      .ai-flyer-promise,
+      .mini-site-offer-copy,
+      .mini-site-offer-card,
+      .mini-site-offer-note {
         padding: 26px;
       }
     }
@@ -3325,6 +3451,45 @@
           <p>Cleaner layouts for schedules, guest speakers, ministries, and community outreach with English and Spanish messaging.</p>
         </div>
       </article>
+    </div>
+  </section>
+
+  <!-- ══ WEBSITE OFFER ══ -->
+  <section class="section" style="padding-top:0;" id="website-offer">
+    <p class="section-eyebrow reveal">New client offer.</p>
+    <h2 class="section-title reveal">$50 a month gets your website built and hosted.</h2>
+    <p class="section-desc reveal">A lower-barrier option for businesses that need a real website live fast without a big upfront project cost.</p>
+
+    <div class="mini-site-offer reveal-group">
+      <div class="mini-site-offer-copy">
+        <div class="mini-site-offer-price">
+          <strong>$50</strong>
+          <span>Per Month</span>
+        </div>
+        <h3>Simple monthly website offer. No huge upfront bill.</h3>
+        <p>If you need a clean, professional website but do not want to drop a large amount of money all at once, this is the easiest way to get online. We build the site for you, host it for you, and give you a polished place to send customers.</p>
+        <ul class="mini-site-offer-list">
+          <li>Website built for your business</li>
+          <li>Hosting included in the monthly price</li>
+          <li>Mobile-friendly layout from day one</li>
+          <li>Perfect for businesses that need to launch quickly</li>
+        </ul>
+      </div>
+
+      <div class="mini-site-offer-side">
+        <div class="mini-site-offer-card">
+          <span class="service-tag">Built + Hosted</span>
+          <h3>Everything you need to get online for one simple monthly price.</h3>
+          <p>This offer is meant for businesses that want a clean online presence without overcomplicating the first step. It is straightforward, affordable, and fast to get moving.</p>
+          <a href="#contact" class="btn-primary" style="width:fit-content; margin-top:6px;">Claim the $50 site offer →</a>
+        </div>
+
+        <div class="mini-site-offer-note">
+          <span class="service-tag">Best For</span>
+          <h3>Small businesses, new launches, and anyone stuck using only social media.</h3>
+          <p>If you are starting from scratch, replacing an outdated page, or finally want a proper home for your business online, this offer gives you a clean starting point without making the decision feel heavy.</p>
+        </div>
+      </div>
     </div>
   </section>
 
