@@ -147,8 +147,14 @@
     }
 
     html {
-      scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
+      scroll-padding-top: 108px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
     }
 
     body {
@@ -163,6 +169,7 @@
 
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
+    [id] { scroll-margin-top: 108px; }
 
     /* ════════════════════════════
        NAV
@@ -3998,6 +4005,7 @@
 
     // Nav background on scroll
     const nav = document.getElementById('main-nav');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const updateNavBg = () => {
       const isLight = document.body.classList.contains('light');
       if (isLight) {
@@ -4011,6 +4019,30 @@
       }
     };
     window.addEventListener('scroll', updateNavBg);
+    updateNavBg();
+
+    // Offset-aware smooth scrolling for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (event) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') return;
+
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        event.preventDefault();
+
+        const navOffset = (nav?.offsetHeight || 0) + 18;
+        const top = target.getBoundingClientRect().top + window.scrollY - navOffset;
+
+        window.scrollTo({
+          top,
+          behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+        });
+
+        history.replaceState(null, '', href);
+      });
+    });
 
     // Day / Night theme toggle
     const toggleBtn  = document.getElementById('theme-toggle');
