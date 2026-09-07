@@ -864,6 +864,7 @@
         min-height: calc(100% - 36px);
         margin-bottom: 0;
         cursor: default;
+        animation: none;
       }
 
       .service-card-wrap.is-current .service-card {
@@ -3821,6 +3822,22 @@
       const CARD_HEIGHT = 160; // approximate collapsed height in px
 
       function onScroll() {
+        if (window.innerWidth > 900) {
+          wraps.forEach((wrap) => {
+            const card = wrap.querySelector('.service-card');
+            const media = wrap.querySelector('.service-media');
+            const mediaImage = wrap.querySelector('.service-media img');
+            card.style.transform = 'none';
+            card.style.opacity = '1';
+            if (media) {
+              media.style.transform = '';
+              media.style.opacity = '';
+            }
+            if (mediaImage) mediaImage.style.transform = '';
+          });
+          return;
+        }
+
         if (window.innerWidth <= 900) {
           wraps.forEach((wrap) => {
             const card = wrap.querySelector('.service-card');
@@ -3940,9 +3957,9 @@
         const nextIndex = Math.min(cards.length - 1, Math.max(0, currentIndex + direction));
         if (nextIndex === currentIndex) return;
         event.preventDefault();
-        cards[nextIndex].scrollIntoView({
-          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-          block: 'start'
+        scroller.scrollTo({
+          top: cards[nextIndex].offsetTop,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
         });
       });
     })();
