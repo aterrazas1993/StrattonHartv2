@@ -825,9 +825,9 @@
     @media (min-width: 901px) {
       .services-stack-outer {
         display: block;
-        height: calc(100svh - 112px);
-        min-height: 560px;
-        max-height: 760px;
+        height: clamp(500px, 68svh, 620px);
+        min-height: 0;
+        max-height: none;
         padding-bottom: 0;
         overflow-x: hidden;
         overflow-y: auto;
@@ -852,7 +852,7 @@
         top: auto;
         z-index: 1;
         height: 100%;
-        padding: 18px 0;
+        padding: 12px 0;
         display: flex;
         align-items: center;
         scroll-snap-align: start;
@@ -861,10 +861,35 @@
 
       .service-card {
         width: 100%;
-        min-height: calc(100% - 36px);
+        min-height: 0;
         margin-bottom: 0;
+        padding: 26px 30px;
+        gap: 24px;
         cursor: default;
         animation: none;
+      }
+
+      .service-card .service-media {
+        width: 190px;
+        aspect-ratio: 4 / 3;
+      }
+
+      .service-card .service-media img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .service-card .service-title {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+
+      .service-card .service-desc {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .service-card .service-tags {
+        margin-top: 8px;
       }
 
       .service-card-wrap.is-current .service-card {
