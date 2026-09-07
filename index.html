@@ -819,6 +819,65 @@
       }
     }
 
+    /* Full-screen service scroller: native equivalent of the fullPage.js effect.
+       It is intentionally scoped to this section so the rest of the site keeps
+       normal document scrolling, and it does not require a commercial license. */
+    @media (min-width: 901px) {
+      .services-stack-outer {
+        display: block;
+        height: calc(100svh - 112px);
+        min-height: 560px;
+        max-height: 760px;
+        padding-bottom: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .services-stack-outer::-webkit-scrollbar {
+        display: none;
+      }
+
+      .service-card-wrap,
+      .service-card-wrap:nth-child(1),
+      .service-card-wrap:nth-child(2),
+      .service-card-wrap:nth-child(3),
+      .service-card-wrap:nth-child(4),
+      .service-card-wrap:nth-child(5),
+      .service-card-wrap:nth-child(6) {
+        position: relative;
+        top: auto;
+        z-index: 1;
+        height: 100%;
+        padding: 18px 0;
+        display: flex;
+        align-items: center;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+
+      .service-card {
+        width: 100%;
+        min-height: calc(100% - 36px);
+        margin-bottom: 0;
+        cursor: default;
+      }
+
+      .service-card-wrap.is-current .service-card {
+        border-color: rgba(240,90,110,0.48);
+        box-shadow: 0 24px 72px rgba(0,0,0,0.28), 0 0 0 1px rgba(240,90,110,0.12);
+      }
+    }
+
+    @media (min-width: 901px) and (prefers-reduced-motion: reduce) {
+      .services-stack-outer {
+        scroll-behavior: auto;
+      }
+    }
+
     /* ════════════════════════════
        STEPS
     ════════════════════════════ */
@@ -3845,6 +3904,47 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll);
       onScroll();
+    })();
+
+    // Full-screen service section navigation and active-card tracking
+    (function() {
+      const scroller = document.querySelector('.services-stack-outer');
+      const cards = scroller ? Array.from(scroller.querySelectorAll('.service-card-wrap')) : [];
+      if (!scroller || !cards.length) return;
+
+      scroller.setAttribute('tabindex', '0');
+      scroller.setAttribute('aria-label', 'Services. Scroll or use the arrow keys to view each service.');
+
+      const setCurrent = (currentCard) => {
+        cards.forEach((card) => {
+          const isCurrent = card === currentCard;
+          card.classList.toggle('is-current', isCurrent);
+          card.setAttribute('aria-current', isCurrent ? 'true' : 'false');
+        });
+      };
+
+      const serviceObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setCurrent(visible.target);
+      }, { root: scroller, threshold: [0.55, 0.7, 0.85] });
+
+      cards.forEach((card) => serviceObserver.observe(card));
+      setCurrent(cards[0]);
+
+      scroller.addEventListener('keydown', (event) => {
+        if (window.innerWidth <= 900 || !['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp'].includes(event.key)) return;
+        const currentIndex = Math.max(0, cards.findIndex((card) => card.classList.contains('is-current')));
+        const direction = event.key === 'ArrowDown' || event.key === 'PageDown' ? 1 : -1;
+        const nextIndex = Math.min(cards.length - 1, Math.max(0, currentIndex + direction));
+        if (nextIndex === currentIndex) return;
+        event.preventDefault();
+        cards[nextIndex].scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          block: 'start'
+        });
+      });
     })();
 
     // Mobile services carousel controls
