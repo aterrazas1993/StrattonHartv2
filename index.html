@@ -246,6 +246,18 @@
 
     .nav-cta:hover { background: var(--primary-dk) !important; }
 
+    /* Client request form button */
+    .nav-request {
+      border: 1px solid var(--border-lt);
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: border-color 0.2s !important;
+    }
+    .nav-request:hover { border-color: var(--primary); }
+    .nav-request-mobile { display: none; }
+
     /* ════════════════════════════
        HERO BACKGROUND
     ════════════════════════════ */
@@ -1698,6 +1710,19 @@
     @media (max-width: 900px) {
       nav { padding: 14px 24px; }
       .nav-links { display: none; }
+      .nav-request-mobile {
+        display: inline-flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: 10px;
+        padding: 6px 11px;
+        border: 1px solid var(--border-lt);
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        color: var(--white);
+      }
       .hero, .section { padding-left: 24px; padding-right: 24px; }
       .hero {
         min-height: auto;
@@ -2203,6 +2228,12 @@
         font-size: 24px;
       }
     }
+    /* Small phones: keep logo on one line next to the request button */
+    @media (max-width: 380px) {
+      nav { padding-left: 16px !important; padding-right: 16px !important; }
+      .nav-logo { gap: 8px; }
+      .nav-logo-text span { letter-spacing: 1px; white-space: nowrap; }
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -2255,8 +2286,11 @@
       <li><a href="#results">Results</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="/request.html" class="nav-request">Submit Request</a></li>
       <li><a href="tel:2109752016" class="nav-cta">Book a Call →</a></li>
     </ul>
+
+    <a href="/request.html" class="nav-request-mobile">New Request</a>
 
     <!-- Day / Night toggle -->
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle day/night">
