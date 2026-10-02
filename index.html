@@ -2685,10 +2685,11 @@
         <div class="portfolio-label" style="margin-bottom:10px;">Featured Client · SEO &amp; Web Design</div>
         <h3 class="portfolio-featured-name">New Legacy Tax Services</h3>
         <p class="portfolio-featured-desc">
-          Full website build, local SEO, Google Business Profile optimization, and email marketing campaigns for a Houston-based virtual tax prep and bookkeeping firm. Built to rank in the Houston market and serve clients across all 50 states.
+          Full website build, local SEO, Google Business Profile optimization, and email marketing campaigns for a Houston-based virtual tax prep and bookkeeping firm. Built to rank in the Houston market and serve clients across all 50 states. Designed for desktop and fully optimized for mobile.
         </p>
         <div class="portfolio-featured-tags">
           <span class="service-tag">Web Design</span>
+          <span class="service-tag">Mobile-Optimized</span>
           <span class="service-tag">Local SEO</span>
           <span class="service-tag">Email Marketing</span>
           <span class="service-tag">Houston, TX</span>
@@ -2698,27 +2699,19 @@
         </a>
       </div>
 
-      <!-- Browser mockup RIGHT -->
-      <div class="browser-mockup" style="border-right:none; border-left:1px solid var(--border); border-radius:0 20px 20px 0;">
-        <div class="browser-bar">
-          <div class="browser-dots">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
+      <!-- Device mockup RIGHT: desktop + mobile screenshots of the live site -->
+      <div class="browser-mockup device-showcase" style="border-right:none; border-left:1px solid var(--border); border-radius:0 20px 20px 0;">
+        <div class="device-stage">
+          <div class="device-desktop">
+            <div class="device-desktop-screen">
+              <img src="./assets/newlegacy-website-desktop.jpg" alt="New Legacy Tax Services homepage shown on a desktop monitor" width="1440" height="900" loading="lazy" decoding="async" />
+            </div>
+            <div class="device-desktop-neck"></div>
+            <div class="device-desktop-base"></div>
           </div>
-          <div class="browser-url">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            newlegacytaxservice.com
+          <div class="device-phone">
+            <img src="./assets/newlegacy-website-mobile.jpg" alt="New Legacy Tax Services homepage shown on a phone" width="390" height="844" loading="lazy" decoding="async" />
           </div>
-          <a href="https://newlegacytaxservice.com" target="_blank" class="browser-visit">Visit ↗</a>
-        </div>
-        <div class="browser-screen">
-          <iframe
-            src="https://newlegacytaxservice.com"
-            title="New Legacy Tax Services website"
-            loading="lazy"
-            scrolling="no"
-          ></iframe>
           <a href="https://newlegacytaxservice.com" target="_blank" class="browser-overlay" aria-label="Open New Legacy Tax Services website"></a>
         </div>
       </div>
@@ -2960,6 +2953,74 @@
       inset: 0;
       cursor: pointer;
       z-index: 2;
+    }
+
+    /* Device mockup (desktop monitor + phone) */
+    .device-showcase {
+      align-self: stretch;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 26% 16%, rgba(240,90,110,0.12), transparent 58%),
+        #1e1a1a;
+    }
+
+    body.light .device-showcase {
+      background:
+        radial-gradient(circle at 26% 16%, rgba(240,90,110,0.10), transparent 58%),
+        #f0edec;
+    }
+
+    .device-stage {
+      position: relative;
+      padding: 9% 8% 8%;
+    }
+
+    .device-desktop { width: 80%; }
+
+    .device-desktop-screen {
+      aspect-ratio: 16 / 10;
+      border: clamp(5px, 0.9vw, 9px) solid #0b0a0a;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 26px 50px -20px rgba(0,0,0,0.75);
+    }
+
+    .device-desktop-neck {
+      width: 14%;
+      aspect-ratio: 5 / 3;
+      margin: 0 auto;
+      background: var(--border-lt);
+    }
+
+    .device-desktop-base {
+      width: 36%;
+      height: 6px;
+      margin: 0 auto;
+      border-radius: 999px;
+      background: var(--border-lt);
+    }
+
+    .device-phone {
+      position: absolute;
+      right: 7%;
+      bottom: 8%;
+      width: 19%;
+      aspect-ratio: 390 / 844;
+      border: clamp(3px, 0.5vw, 6px) solid #0b0a0a;
+      border-radius: clamp(12px, 1.8vw, 22px);
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 22px 44px -16px rgba(0,0,0,0.8);
+    }
+
+    .device-desktop-screen img,
+    .device-phone img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
     }
 
     /* Info panel */
