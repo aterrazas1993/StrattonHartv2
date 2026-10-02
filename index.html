@@ -36,6 +36,10 @@
       --primary-lt: #F87E8A;   /* light coral (highlights) */
       --primary-xl: #FBB3BB;   /* very light coral (subtle tints) */
 
+      /* ── Gold accent: headline emphasis, small labels and hairlines only. Buttons stay coral. ── */
+      --gold:       #D4AF37;
+      --gold-metal: linear-gradient(115deg, #B8912F 0%, #F1DC9A 42%, #D4AF37 68%, #9A7526 100%);
+
       /* ── Dark theme neutrals ── */
       --bg:         #0d0c0c;
       --surface:    #161414;
@@ -64,6 +68,9 @@
       --text:      #1a1616;
       --muted:     #6b6060;
       --white:     #1a1616;
+      /* deeper gold so it stays readable on the light background */
+      --gold:       #8A6710;
+      --gold-metal: linear-gradient(115deg, #6E520E 0%, #B8912F 45%, #8A6710 100%);
     }
 
     body.light nav {
@@ -101,7 +108,7 @@
     body.light .footer-nav-title { color: #1a1616; }
     body.light .nav-logo-text { color: #1a1616; }
     body.light .hero h1 em {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dk) 100%);
+      background: var(--gold-metal);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -471,7 +478,7 @@
 
     .hero h1 em {
       font-style: normal;
-      background: linear-gradient(135deg, var(--primary-lt) 0%, var(--primary) 50%, var(--primary-dk) 100%);
+      background: var(--gold-metal);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -536,7 +543,7 @@
       font-size: 11px;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--primary);
+      color: var(--gold);
       font-weight: 600;
       margin-bottom: 14px;
     }
@@ -580,7 +587,7 @@
       font-size: 11px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--primary);
+      color: var(--gold);
       font-weight: 600;
       white-space: nowrap;
       min-width: 180px;
@@ -1281,7 +1288,7 @@
 
     .portfolio-label {
       font-size: 11px;
-      color: var(--primary);
+      color: var(--gold);
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -1595,7 +1602,7 @@
        CTA BANNER
     ════════════════════════════ */
     .cta-banner {
-      border-top: 1px solid var(--border);
+      border-top: 1px solid rgba(212,175,55,0.45);
       border-bottom: 1px solid var(--border);
       background: linear-gradient(135deg, rgba(240,90,110,0.07) 0%, transparent 55%);
     }
@@ -2929,7 +2936,7 @@
       bottom: -20px;
       height: 52px;
       border-radius: 999px;
-      background: radial-gradient(ellipse at center, rgba(255,136,28,0.38) 0%, rgba(255,136,28,0.16) 42%, rgba(255,136,28,0) 76%);
+      background: radial-gradient(ellipse at center, rgba(212,175,55,0.38) 0%, rgba(212,175,55,0.16) 42%, rgba(212,175,55,0) 76%);
       filter: blur(20px);
       opacity: 0;
       transform: scaleX(0.72);
@@ -3130,8 +3137,8 @@
       width: 100%;
       height: 3px;
       border-radius: 999px;
-      background: linear-gradient(90deg, rgba(255,136,28,0.98), rgba(255,184,92,0.96));
-      box-shadow: 0 0 16px rgba(255,136,28,0.55);
+      background: var(--gold-metal);
+      box-shadow: 0 0 16px rgba(212,175,55,0.5);
       opacity: 0;
       transform: scaleX(0.08);
       transform-origin: left center;
