@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Submit a Request | Stratton Hart Marketing Agency</title>
-  <meta name="description" content="Clients: send Stratton Hart a new project or task request. You'll get an email confirmation right away." />
+  <title data-i18n data-es="Enviar una solicitud | Stratton Hart Marketing Agency">Submit a Request | Stratton Hart Marketing Agency</title>
+  <meta data-i18n data-es-content="Clientes: envíen a Stratton Hart una nueva solicitud de proyecto o tarea. Recibirán una confirmación por correo de inmediato." name="description" content="Clients: send Stratton Hart a new project or task request. You'll get an email confirmation right away." />
   <meta name="robots" content="noindex" />
   <link rel="canonical" href="https://strattonhart.com/request.html" />
   <link rel="icon" type="image/png" href="/assets/logo.png" />
@@ -88,6 +88,26 @@
     }
     .back { font-size: 14px; color: var(--muted); transition: color .2s; }
     .back:hover { color: var(--white); }
+
+    /* Language toggle (English / Spanish) */
+    .header-tools { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+    .lang-toggle {
+      position: relative;
+      height: 28px;
+      padding: 0 12px;
+      border: 1.5px solid var(--border-lt);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .lang-toggle:hover { border-color: var(--primary); }
 
     /* ── Layout ── */
     main {
@@ -272,105 +292,135 @@
     footer a:hover { color: var(--white); }
 
     @media (max-width: 640px) {
-      header { padding: 14px 16px; }
+      header { padding: 14px 16px; position: relative; }
       .back { font-size: 13px; }
+      .lang-toggle {
+        position: absolute;
+        top: 100%;
+        right: 16px;
+        height: 30px;
+        font-size: 12px;
+        border: 1px solid var(--border);
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        background: var(--bg);
+      }
+      .lang-toggle::after { content: ''; position: absolute; inset: 0 -10px -12px; }
       main { padding: 36px 16px 64px; }
       .card { padding: 24px 18px; }
       .grid { grid-template-columns: 1fr; }
       button[type="submit"] { width: 100%; }
     }
   </style>
+  <!-- Returning Spanish visitors: hold the first paint until /assets/i18n.js has swapped the text, so English never flashes -->
+  <style>html.lang-loading body { visibility: hidden; }</style>
+  <script>
+    (function () {
+      try {
+        var q = /[?&]lang=(en|es)\b/.exec(location.search);
+        var lang = q ? q[1] : localStorage.getItem('sh-lang');
+        if (lang === 'es') {
+          document.documentElement.classList.add('lang-loading');
+          setTimeout(function () { document.documentElement.classList.remove('lang-loading'); }, 2000);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
   <header>
     <a href="/" class="logo">
       <img src="/assets/logo.png" alt="" />
-      <div class="logo-text">Stratton Hart<span>Marketing Agency</span></div>
+      <div data-i18n data-es="Stratton Hart<span>Agencia de Marketing</span>" class="logo-text">Stratton Hart<span>Marketing Agency</span></div>
     </a>
-    <a href="/" class="back">← Back to site</a>
+    <div class="header-tools">
+      <!-- Language toggle (English / Spanish) — text is swapped by /assets/i18n.js -->
+      <button class="lang-toggle" type="button" data-lang-toggle data-i18n data-es="English" aria-label="Cambiar a español" data-es-aria-label="Switch to English">Español</button>
+      <a data-i18n data-es="← Volver" href="/" class="back">← Back to site</a>
+    </div>
   </header>
 
   <main>
-    <p class="eyebrow">Client requests</p>
-    <h1>Send me a request</h1>
-    <p class="lead">Need a new graphic, a website update, an ad change or anything else? Tell me what you need below. You'll get an email confirmation as soon as you hit submit, and I'll get started as soon as possible.</p>
+    <p data-i18n data-es="Solicitudes de clientes" class="eyebrow">Client requests</p>
+    <h1 data-i18n data-es="Envíame una solicitud">Send me a request</h1>
+    <p data-i18n data-es="¿Necesitas un gráfico nuevo, una actualización del sitio web, un cambio en un anuncio o cualquier otra cosa? Dime qué necesitas aquí abajo. Recibirás una confirmación por correo en cuanto envíes el formulario, y empezaré lo antes posible." class="lead">Need a new graphic, a website update, an ad change or anything else? Tell me what you need below. You'll get an email confirmation as soon as you hit submit, and I'll get started as soon as possible.</p>
 
     <div class="card">
       <form id="request-form" novalidate>
         <fieldset>
-          <legend>Your info</legend>
+          <legend data-i18n data-es="Tus datos">Your info</legend>
           <div class="grid">
             <div>
-              <label for="name">Your name <span class="req">*</span></label>
+              <label data-i18n data-es="Tu nombre <span class=&quot;req&quot;>*</span>" for="name">Your name <span class="req">*</span></label>
               <input id="name" name="name" type="text" autocomplete="name" required />
-              <p class="field-error" data-for="name">Please enter your name.</p>
+              <p data-i18n data-es="Por favor escribe tu nombre." class="field-error" data-for="name">Please enter your name.</p>
             </div>
             <div>
-              <label for="business">Business name <span class="req">*</span></label>
+              <label data-i18n data-es="Nombre del negocio <span class=&quot;req&quot;>*</span>" for="business">Business name <span class="req">*</span></label>
               <input id="business" name="business" type="text" autocomplete="organization" required />
-              <p class="field-error" data-for="business">Please enter your business name.</p>
+              <p data-i18n data-es="Por favor escribe el nombre de tu negocio." class="field-error" data-for="business">Please enter your business name.</p>
             </div>
             <div>
-              <label for="email">Email <span class="req">*</span></label>
+              <label data-i18n data-es="Correo electrónico <span class=&quot;req&quot;>*</span>" for="email">Email <span class="req">*</span></label>
               <input id="email" name="email" type="email" autocomplete="email" required />
-              <p class="field-error" data-for="email">Please enter a valid email so I can confirm your request.</p>
+              <p data-i18n data-es="Por favor escribe un correo válido para poder confirmar tu solicitud." class="field-error" data-for="email">Please enter a valid email so I can confirm your request.</p>
             </div>
             <div>
-              <label for="phone">Phone <span class="opt">(optional)</span></label>
+              <label data-i18n data-es="Teléfono <span class=&quot;opt&quot;>(opcional)</span>" for="phone">Phone <span class="opt">(optional)</span></label>
               <input id="phone" name="phone" type="tel" autocomplete="tel" />
             </div>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>Your request</legend>
+          <legend data-i18n data-es="Tu solicitud">Your request</legend>
           <div class="grid">
             <div>
-              <label for="service">What's it for? <span class="req">*</span></label>
+              <label data-i18n data-es="¿Para qué es? <span class=&quot;req&quot;>*</span>" for="service">What's it for? <span class="req">*</span></label>
               <select id="service" name="service" required>
-                <option value="">Choose one…</option>
-                <option>Website update / fix</option>
-                <option>New web page or landing page</option>
-                <option>SEO / Google Business Profile</option>
-                <option>Graphic design / flyer / social post</option>
-                <option>Video production / editing</option>
-                <option>UGC / content creators</option>
-                <option>Paid ads (Google / Meta)</option>
-                <option>Reporting / question</option>
-                <option>Something else</option>
+                <option data-i18n data-es="Elige una opción…" value="">Choose one…</option>
+                <option data-i18n data-es="Actualización o arreglo del sitio web" value="Website update / fix">Website update / fix</option>
+                <option data-i18n data-es="Nueva página web o landing page" value="New web page or landing page">New web page or landing page</option>
+                <option data-i18n data-es="SEO / Perfil de Negocio de Google" value="SEO / Google Business Profile">SEO / Google Business Profile</option>
+                <option data-i18n data-es="Diseño gráfico / flyer / publicación para redes" value="Graphic design / flyer / social post">Graphic design / flyer / social post</option>
+                <option data-i18n data-es="Producción / edición de video" value="Video production / editing">Video production / editing</option>
+                <option data-i18n data-es="UGC / creadores de contenido" value="UGC / content creators">UGC / content creators</option>
+                <option data-i18n data-es="Anuncios pagados (Google / Meta)" value="Paid ads (Google / Meta)">Paid ads (Google / Meta)</option>
+                <option data-i18n data-es="Reportes / pregunta" value="Reporting / question">Reporting / question</option>
+                <option data-i18n data-es="Otra cosa" value="Something else">Something else</option>
               </select>
-              <p class="field-error" data-for="service">Please choose a category.</p>
+              <p data-i18n data-es="Por favor elige una categoría." class="field-error" data-for="service">Please choose a category.</p>
             </div>
             <div>
-              <label for="deadline">Needed by <span class="opt">(optional)</span></label>
+              <label data-i18n data-es="Fecha límite <span class=&quot;opt&quot;>(opcional)</span>" for="deadline">Needed by <span class="opt">(optional)</span></label>
               <input id="deadline" name="deadline" type="date" />
             </div>
 
             <div class="full">
-              <label for="title">Short title <span class="req">*</span></label>
-              <input id="title" name="title" type="text" maxlength="120" placeholder="e.g. Update holiday hours on the website" required />
-              <p class="field-error" data-for="title">Please give your request a short title.</p>
+              <label data-i18n data-es="Título corto <span class=&quot;req&quot;>*</span>" for="title">Short title <span class="req">*</span></label>
+              <input data-i18n data-es-placeholder="p. ej. Actualizar el horario de días festivos en el sitio web" id="title" name="title" type="text" maxlength="120" placeholder="e.g. Update holiday hours on the website" required />
+              <p data-i18n data-es="Por favor ponle un título corto a tu solicitud." class="field-error" data-for="title">Please give your request a short title.</p>
             </div>
 
             <div class="full">
-              <label for="details">Details <span class="req">*</span></label>
-              <textarea id="details" name="details" placeholder="What do you need done? Include any wording, sizes, pages, dates or examples. If there are several tasks, list each on its own line." required></textarea>
-              <p class="field-error" data-for="details">Please describe what you need.</p>
+              <label data-i18n data-es="Detalles <span class=&quot;req&quot;>*</span>" for="details">Details <span class="req">*</span></label>
+              <textarea data-i18n data-es-placeholder="¿Qué necesitas que se haga? Incluye textos, medidas, páginas, fechas o ejemplos. Si son varias tareas, escribe cada una en su propia línea." id="details" name="details" placeholder="What do you need done? Include any wording, sizes, pages, dates or examples. If there are several tasks, list each on its own line." required></textarea>
+              <p data-i18n data-es="Por favor describe lo que necesitas." class="field-error" data-for="details">Please describe what you need.</p>
             </div>
 
             <div class="full">
-              <label for="links">Links to files or examples <span class="opt">(optional)</span></label>
-              <input id="links" name="links" type="text" placeholder="Google Drive, Dropbox, or a website link" />
-              <p class="hint">For photos, logos or videos, share a Google Drive or Dropbox link here.</p>
+              <label data-i18n data-es="Enlaces a archivos o ejemplos <span class=&quot;opt&quot;>(opcional)</span>" for="links">Links to files or examples <span class="opt">(optional)</span></label>
+              <input data-i18n data-es-placeholder="Google Drive, Dropbox o un enlace a un sitio web" id="links" name="links" type="text" placeholder="Google Drive, Dropbox, or a website link" />
+              <p data-i18n data-es="Para fotos, logotipos o videos, comparte aquí un enlace de Google Drive o Dropbox." class="hint">For photos, logos or videos, share a Google Drive or Dropbox link here.</p>
             </div>
 
             <div class="full">
-              <label id="priority-label">Priority</label>
+              <label data-i18n data-es="Prioridad" id="priority-label">Priority</label>
               <div class="pills" role="radiogroup" aria-labelledby="priority-label">
-                <label class="pill"><input type="radio" name="priority" value="Standard" checked /><span>Standard</span></label>
-                <label class="pill"><input type="radio" name="priority" value="This week" /><span>This week</span></label>
-                <label class="pill"><input type="radio" name="priority" value="Urgent" /><span>Urgent</span></label>
+                <label class="pill"><input type="radio" name="priority" value="Standard" checked /><span data-i18n data-es="Normal">Standard</span></label>
+                <label class="pill"><input type="radio" name="priority" value="This week" /><span data-i18n data-es="Esta semana">This week</span></label>
+                <label class="pill"><input type="radio" name="priority" value="Urgent" /><span data-i18n data-es="Urgente">Urgent</span></label>
               </div>
             </div>
           </div>
@@ -383,26 +433,29 @@
         </div>
 
         <div class="actions">
-          <button type="submit" id="submit-btn">Submit request</button>
-          <span class="fine">You'll get a confirmation email right away.</span>
+          <button data-i18n data-es="Enviar solicitud" type="submit" id="submit-btn">Submit request</button>
+          <span data-i18n data-es="Recibirás un correo de confirmación de inmediato." class="fine">You'll get a confirmation email right away.</span>
         </div>
         <div class="form-error" id="form-error" role="alert"></div>
       </form>
 
       <div class="success" id="success" role="status" aria-live="polite">
         <div class="check">✓</div>
-        <h2>Request received</h2>
-        <p>Thanks! I've got it, and a confirmation is on its way to <strong id="success-email"></strong>.</p>
-        <p>I'll start working on it as soon as possible.</p>
+        <h2 data-i18n data-es="Solicitud recibida">Request received</h2>
+        <p><span data-i18n data-es="¡Gracias! Ya la recibí, y la confirmación va en camino a">Thanks! I've got it, and a confirmation is on its way to</span> <strong id="success-email"></strong>.</p>
+        <p data-i18n data-es="Empezaré a trabajar en ella lo antes posible.">I'll start working on it as soon as possible.</p>
         <div class="ref" id="success-ref"></div><br />
-        <button type="button" class="link-btn" id="another">Submit another request</button>
+        <button data-i18n data-es="Enviar otra solicitud" type="button" class="link-btn" id="another">Submit another request</button>
       </div>
     </div>
   </main>
 
-  <footer>
+  <footer data-i18n data-es="¿Preguntas? Llama al <a href=&quot;tel:2109752016&quot;>(210) 975-2016</a> · © 2026 Stratton Hart Marketing Agency">
     Questions? Call <a href="tel:2109752016">(210) 975-2016</a> · © 2026 Stratton Hart Marketing Agency
   </footer>
+
+  <!-- English / Spanish toggle: swaps every [data-i18n] element to its data-es text -->
+  <script src="/assets/i18n.js"></script>
 
   <script>
     // Paste your Google Apps Script Web App URL here (see setup guide, step 4).
@@ -413,6 +466,22 @@
     const formError = document.getElementById('form-error');
     const success = document.getElementById('success');
     const required = ['name', 'business', 'email', 'service', 'title', 'details'];
+
+    // Text written by this script, in whichever language is showing (see /assets/i18n.js)
+    let lastRequestId = null;
+    function showRequestRef() {
+      if (lastRequestId) document.getElementById('success-ref').textContent = shT('Request # ', 'Solicitud n.º ') + lastRequestId;
+    }
+    function showSendError() {
+      formError.innerHTML = shT(
+        'Sorry, your request didn\'t go through. Please try again, or call <a href="tel:2109752016"><u>(210) 975-2016</u></a>.',
+        'Lo siento, tu solicitud no se pudo enviar. Inténtalo de nuevo, o llama al <a href="tel:2109752016"><u>(210) 975-2016</u></a>.'
+      );
+    }
+    window.addEventListener('sh:langchange', function () {
+      showRequestRef();
+      if (formError.classList.contains('show')) showSendError();
+    });
 
     function showFieldError(id, show) {
       const el = document.getElementById(id);
@@ -444,7 +513,7 @@
       if (!validate()) return;
 
       btn.disabled = true;
-      btn.textContent = 'Sending…';
+      btn.textContent = shT('Sending…', 'Enviando…');
 
       const data = new URLSearchParams(new FormData(form));
       data.append('page', window.location.href);
@@ -455,16 +524,17 @@
         if (!json.ok) throw new Error(json.error || 'Something went wrong.');
 
         document.getElementById('success-email').textContent = document.getElementById('email').value.trim();
-        document.getElementById('success-ref').textContent = 'Request # ' + json.id;
+        lastRequestId = json.id;
+        showRequestRef();
         form.style.display = 'none';
         success.classList.add('show');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (err) {
-        formError.innerHTML = 'Sorry, your request didn\'t go through. Please try again, or call <a href="tel:2109752016"><u>(210) 975-2016</u></a>.';
+        showSendError();
         formError.classList.add('show');
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Submit request';
+        btn.textContent = shT('Submit request', 'Enviar solicitud');
       }
     });
 
