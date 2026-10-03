@@ -1,0 +1,40 @@
+/* Native dialog keeps the homepage loading while making it inert during the intro. */
+#sh-welcome {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #000;
+  color: #fff;
+  opacity: 1;
+  transition: opacity 350ms ease;
+  overflow: hidden;
+}
+#sh-welcome::backdrop { background: transparent; }
+#sh-welcome.sh-welcome-leaving { opacity: 0; }
+#sh-welcome video { display: block; width: 100%; height: 100%; object-fit: contain; }
+#sh-welcome-skip {
+  position: absolute;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 1px solid #777;
+  border-radius: 999px;
+  background: #161414;
+  color: #fff;
+  font: 600 14px/1.4 Inter, sans-serif;
+  cursor: pointer;
+}
+#sh-welcome-skip:hover { background: #362027; }
+#sh-welcome-skip:focus-visible { outline: 3px solid #f05a6e; outline-offset: 4px; }
+html.sh-welcome-open { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  #sh-welcome { transition: none; }
+}

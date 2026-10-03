@@ -2345,8 +2345,15 @@
       } catch (e) {}
     })();
   </script>
+  <link rel="stylesheet" href="/assets/welcome-intro.css" />
+  <script src="/assets/welcome-intro.js" defer></script>
 </head>
 <body>
+  <!-- Optional welcome; remains hidden and the site stays usable without JavaScript. -->
+  <dialog id="sh-welcome" aria-label="Welcome to Stratton Hart">
+    <video id="sh-welcome-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+    <button id="sh-welcome-skip" type="button" autofocus>Skip intro →</button>
+  </dialog>
 
   <!-- Background -->
   <div class="hero-bg">
