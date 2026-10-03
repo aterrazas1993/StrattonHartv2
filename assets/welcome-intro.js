@@ -3,16 +3,19 @@
   var dialog = document.getElementById('sh-welcome');
   var video = document.getElementById('sh-welcome-video');
   var skip = document.getElementById('sh-welcome-skip');
-  var key = 'sh-welcome-seen-v1';
+  var play = document.getElementById('sh-welcome-play');
+  var key = 'sh-welcome-seen-v2';
+  var replay = /[?&]intro=1(?:&|$)/.test(location.search || '');
   var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var seen = false;
   try { seen = sessionStorage.getItem(key) === '1'; } catch (e) {}
 
   // Do not download the video on repeat visits, deep links, or reduced-motion/data connections.
-  if (!dialog || !video || !skip || !dialog.showModal || seen || motion.matches ||
+  if (!dialog || !video || !skip || !dialog.showModal || (seen && !replay) || motion.matches ||
       location.hash || (navigator.connection && navigator.connection.saveData)) return;
 
   var finished = false;
+  function remember() { try { sessionStorage.setItem(key, '1'); } catch (e) {} }
   var startTimer;
   var endTimer;
   var closeTimer;
@@ -46,31 +49,51 @@
   function onMotion(event) { if (event.matches) finish(true); }
   function translate() {
     var spanish = document.documentElement.lang === 'es';
+    if (play) play.textContent = spanish ? 'Reproducir intro' : 'Play intro';
     skip.textContent = spanish ? 'Omitir intro →' : 'Skip intro →';
     dialog.setAttribute('aria-label', spanish ? 'Bienvenido a Stratton Hart' : 'Welcome to Stratton Hart');
   }
   translate();
   window.addEventListener('sh:langchange', translate);
-  skip.addEventListener('click', function () { finish(); });
-  dialog.addEventListener('cancel', function (event) { event.preventDefault(); finish(); });
+  skip.addEventListener('click', function () { remember(); finish(); });
+  dialog.addEventListener('cancel', function (event) { event.preventDefault(); remember(); finish(); });
   dialog.addEventListener('close', function () { finish(true); });
-  video.addEventListener('ended', function () { finish(); });
+  video.addEventListener('ended', function () { remember(); finish(); });
   video.addEventListener('error', function () { finish(true); });
-  video.addEventListener('playing', function () { clearTimeout(startTimer); });
+  video.addEventListener('playing', function () {
+    clearTimeout(startTimer);
+    clearTimeout(endTimer);
+    if (play) play.hidden = true;
+    endTimer = setTimeout(function () { finish(); }, 7500);
+  });
   window.addEventListener('pagehide', function () { finish(true); });
   if (motion.addEventListener) motion.addEventListener('change', onMotion);
 
+  function offerPlayback() {
+    if (finished) return;
+    clearTimeout(startTimer);
+    if (!play) { finish(true); return; }
+    play.hidden = false;
+    // Keep Skip available; release the page even if the visitor takes no action.
+    startTimer = setTimeout(function () { finish(true); }, 15000);
+  }
+  function startPlayback() {
+    if (finished) return;
+    clearTimeout(startTimer);
+    if (play) play.hidden = true;
+    startTimer = setTimeout(function () { finish(true); }, 8000);
+    try {
+      var playback = video.play();
+      if (playback && playback.catch) playback.catch(offerPlayback);
+    } catch (e) { offerPlayback(); }
+  }
+  if (play) play.addEventListener('click', startPlayback);
   try {
     dialog.showModal();
     document.documentElement.classList.add('sh-welcome-open');
     skip.focus({ preventScroll: true });
-    try { sessionStorage.setItem(key, '1'); } catch (e) {}
-    // Fail open on slow networks, stalled playback, and blocked autoplay.
-    startTimer = setTimeout(function () { finish(true); }, 1500);
-    endTimer = setTimeout(function () { finish(); }, 7500);
     video.muted = true;
     video.src = '/assets/stratton-hart-logo-stinger.mp4';
-    var playback = video.play();
-    if (playback && playback.catch) playback.catch(function () { finish(true); });
+    startPlayback();
   } catch (e) { finish(true); }
 })();

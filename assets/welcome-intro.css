@@ -38,3 +38,20 @@ html.sh-welcome-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   #sh-welcome { transition: none; }
 }
+
+#sh-welcome-play {
+  position: absolute;
+  left: 50%;
+  bottom: max(90px, calc(env(safe-area-inset-bottom) + 72px));
+  transform: translateX(-50%);
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 1px solid #f05a6e;
+  border-radius: 999px;
+  background: #c42940;
+  color: #fff;
+  font: 600 16px/1.4 Inter, sans-serif;
+  cursor: pointer;
+}
+#sh-welcome-play[hidden] { display: none; }
+#sh-welcome-play:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
