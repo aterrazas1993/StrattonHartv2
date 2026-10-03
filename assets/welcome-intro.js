@@ -1,5 +1,7 @@
 (function () {
   'use strict';
+  // Match the site's mobile layout, including touch phones in landscape.
+  if (window.matchMedia('(max-width: 900px), (hover: none) and (pointer: coarse)').matches) return;
   var dialog = document.getElementById('sh-welcome');
   var video = document.getElementById('sh-welcome-video');
   var skip = document.getElementById('sh-welcome-skip');
@@ -92,6 +94,7 @@
     dialog.showModal();
     document.documentElement.classList.add('sh-welcome-open');
     skip.focus({ preventScroll: true });
+    video.poster = '/assets/welcome-poster.jpg';
     video.muted = true;
     video.src = '/assets/stratton-hart-logo-stinger.mp4';
     startPlayback();

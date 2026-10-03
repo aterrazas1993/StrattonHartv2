@@ -14,7 +14,7 @@ function boot(options = {}) {
   const dialog = { ...events(), open: false, classList: classes(), attrs: {}, setAttribute(k, v) { this.attrs[k] = v; }, showModal() { this.open = true; }, close() { this.open = false; this.emit('close'); } };
   const video = { ...events(), plays: 0, loads: 0, play() { this.plays++; return options.reject ? Promise.reject(new Error('blocked')) : Promise.resolve(); }, pause() { this.paused = true; }, load() { this.loads++; }, removeAttribute(k) { delete this[k]; } };
   const motion = { ...events(), matches: !!options.reduced };
-  const window = { ...events(), matchMedia() { return motion; } };
+  const window = { ...events(), matchMedia(query) { return query.includes('max-width') ? { matches: !!options.mobile } : motion; } };
   let stored = options.seen ? '1' : null;
   const sessionStorage = { getItem() { if (options.noStorage) throw Error(); return stored; }, setItem(k, v) { if (options.noStorage) throw Error(); stored = v; } };
   document.getElementById = k => ({ 'sh-welcome': dialog, 'sh-welcome-video': video, 'sh-welcome-skip': skip, 'sh-welcome-play': play })[k];
@@ -24,7 +24,7 @@ function boot(options = {}) {
 }
 function closed(app) { assert.equal(app.dialog.open, false); assert.equal(app.document.documentElement.classList.values.has('sh-welcome-open'), false); assert.equal(app.video.src, undefined); }
 test('first visit plays the supplied video muted without prematurely recording the visit', () => { const a = boot(); assert.equal(a.dialog.open, true); assert.equal(a.video.muted, true); assert.equal(a.video.src, '/assets/stratton-hart-logo-stinger.mp4'); assert.equal(a.stored(), null); });
-for (const options of [{ seen: true }, { reduced: true }, { saveData: true }, { hash: '#pricing' }, { unsupported: true }]) test('bypasses intro without downloading: ' + JSON.stringify(options), () => { const a = boot(options); closed(a); assert.equal(a.video.plays, 0); });
+for (const options of [{ mobile: true }, { mobile: true, replay: true }, { seen: true }, { reduced: true }, { saveData: true }, { hash: '#pricing' }, { unsupported: true }]) test('bypasses intro without downloading: ' + JSON.stringify(options), () => { const a = boot(options); closed(a); assert.equal(a.video.plays, 0); });
 test('ended fades to the site, then releases the video', () => { const a = boot(); a.video.emit('playing'); a.video.emit('ended'); assert.equal(a.dialog.open, true); assert.equal(a.dialog.classList.values.has('sh-welcome-leaving'), true); assert.ok(a.video.src); a.advance(350); closed(a); });
 test('skip dismisses and restores scrolling', () => { const a = boot(); a.skip.emit('click'); a.advance(350); closed(a); });
 test('Escape dismisses', () => { const a = boot(); let prevented = false; a.dialog.emit('cancel', { preventDefault() { prevented = true; } }); assert.equal(prevented, true); a.advance(350); closed(a); });
